@@ -1,0 +1,9 @@
+/target/
+/overlay/
+
+/.settings/
+/.project
+/.classpath
+
+/.idea/
+/*.iml
