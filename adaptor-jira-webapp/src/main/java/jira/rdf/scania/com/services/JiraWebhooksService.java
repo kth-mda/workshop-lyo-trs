@@ -48,35 +48,35 @@ import jira.rdf.scania.com.resources.ChangeRequest;
 import jira.rdf.scania.com.resources.Project;
 
 @Path("jira/webhooks")
-public class JiraWebhooksService
-{
-	@Context private HttpServletRequest httpServletRequest;
-	@Context private HttpServletResponse httpServletResponse;
-	@Context private UriInfo uriInfo;
+public class JiraWebhooksService {
+    @Context
+    private HttpServletRequest httpServletRequest;
+    @Context
+    private HttpServletResponse httpServletResponse;
+    @Context
+    private UriInfo uriInfo;
 
-	private static final Logger log = LoggerFactory.getLogger(JiraWebhooksService.class);
+    private static final Logger log = LoggerFactory.getLogger(JiraWebhooksService.class);
 
-    public JiraWebhooksService()
-    {
+    public JiraWebhooksService() {
         super();
     }
 
-    public ChangeRequest getChangeRequest(LinkedHashMap<String,Object> issueData) throws URISyntaxException
-    {    
+    public ChangeRequest getChangeRequest(LinkedHashMap<String, Object> issueData) throws URISyntaxException {
         ChangeRequest aChangeRequest = new ChangeRequest();
 
         aChangeRequest.setIdentifier((String) issueData.get("id"));
-        LinkedHashMap<String,Object> issueFieldsData = (LinkedHashMap<String, Object>) issueData.get("fields");
+        LinkedHashMap<String, Object> issueFieldsData = (LinkedHashMap<String, Object>) issueData.get("fields");
         aChangeRequest.setDescription((String) issueFieldsData.get("description"));
         aChangeRequest.setTitle((String) issueFieldsData.get("summary"));
-        LinkedHashMap<String,Object> projectData = (LinkedHashMap<String, Object>) issueFieldsData.get("project");
-        //String projectName = (String) projectData.get("name");
-        //aChangeRequest.setProject(projectName);
+        LinkedHashMap<String, Object> projectData = (LinkedHashMap<String, Object>) issueFieldsData.get("project");
+        // String projectName = (String) projectData.get("name");
+        // aChangeRequest.setProject(projectName);
         String projectId = (String) projectData.get("id");
         aChangeRequest.setProject(Project.constructLink("1", projectId));
-        LinkedHashMap<String,Object> creatorData = (LinkedHashMap<String, Object>) issueFieldsData.get("creator");
+        LinkedHashMap<String, Object> creatorData = (LinkedHashMap<String, Object>) issueFieldsData.get("creator");
         URI personURI = queryPersonURI((String) creatorData.get("key"));
-        aChangeRequest.setCreator(new Link (personURI));
+        aChangeRequest.setCreator(new Link(personURI));
         aChangeRequest.setAbout(ChangeRequest.constructURI("1", aChangeRequest.getIdentifier()));
         return aChangeRequest;
     }
@@ -84,29 +84,30 @@ public class JiraWebhooksService
     @POST
     @Path("issues")
     @Produces({ MediaType.TEXT_HTML })
-    public Response handleIssuesWebhooks() throws ServletException, IOException, URISyntaxException
-    {    
+    public Response handleIssuesWebhooks() throws ServletException, IOException, URISyntaxException {
+        log.info("Received webhook issue update call");
+
         ServletInputStream inputStream = httpServletRequest.getInputStream();
         ObjectMapper mapper = new ObjectMapper();
 
-        Map<String,Object> jsonData = new HashMap<String,Object>();
+        Map<String, Object> jsonData = new HashMap<String, Object>();
         jsonData = mapper.readValue(inputStream, Map.class);
 
-        LinkedHashMap<String,Object> issueData = (LinkedHashMap<String, Object>) jsonData.get("issue");
+        LinkedHashMap<String, Object> issueData = (LinkedHashMap<String, Object>) jsonData.get("issue");
         try {
-            //Transform the Json Issue into a ChangeRequest resource.
+            // Transform the Json Issue into a ChangeRequest resource.
             ChangeRequest aChangeRequest = getChangeRequest(issueData);
-            //Save the ChangeRequest resource into a triplestore.
-            JiraAdaptorManager.store.updateResources(new URI ("urn:x-arq:DefaultGraph"), aChangeRequest);
-        } catch (Exception e) {        
-            log.error("Failed to update an Issues resource", e);
-        } 
+            // Save the ChangeRequest resource into a triplestore.
+            JiraAdaptorManager.store.updateResources(new URI("urn:x-arq:DefaultGraph"), aChangeRequest);
+            log.debug("Jira webhook issue update was successfully persisted in the triplestore");
+        } catch (Exception e) {
+            log.error("Jira webhook issue processing has failed", e);
+        }
 
         return Response.ok().build();
     }
 
-    public Project getProject(LinkedHashMap<String,Object> projectData) throws URISyntaxException
-    {	
+    public Project getProject(LinkedHashMap<String, Object> projectData) throws URISyntaxException {
         Project project = new Project();
         String projectId = projectData.get("id").toString();
         project.setIdentifier(projectId);
@@ -118,61 +119,65 @@ public class JiraWebhooksService
     @POST
     @Path("projects")
     @Produces({ MediaType.TEXT_HTML })
-    public Response handleProjectsWebhooks() throws ServletException, IOException, URISyntaxException
-    {
+    public Response handleProjectsWebhooks() throws ServletException, IOException, URISyntaxException {
+        log.info("Received webhook project update call");
         ServletInputStream inputStream = httpServletRequest.getInputStream();
         ObjectMapper mapper = new ObjectMapper();
 
-        Map<String,Object> jsonData = new HashMap<String,Object>();
+        Map<String, Object> jsonData = new HashMap<String, Object>();
         jsonData = mapper.readValue(inputStream, Map.class);
 
-        LinkedHashMap<String,Object> projectData = (LinkedHashMap<String, Object>) jsonData.get("project");
+        LinkedHashMap<String, Object> projectData = (LinkedHashMap<String, Object>) jsonData.get("project");
         Project project = getProject(projectData);
         try {
-            JiraAdaptorManager.store.updateResources(new URI ("urn:x-arq:DefaultGraph"), project);
+            JiraAdaptorManager.store.updateResources(new URI("urn:x-arq:DefaultGraph"), project);
+            log.debug("Jira webhook issue update was successfully persisted in the triplestore");
         } catch (Exception e) {
-            log.error("Failed to update an Project resource", e);
-        } 
+            log.error("Jira webhook issue processing has failed", e);
+        }
         return Response.ok().build();
     }
 
     @GET
     @Path("initIssues")
     @Produces({ MediaType.TEXT_HTML })
-    public Response initializeIssues() throws ServletException, IOException, URISyntaxException
-    {    
+    public Response initializeIssues() throws ServletException, IOException, URISyntaxException {
         try {
             final String username = "admin";
             final String password = "admin";
-            final String basePath = "http://localhost:8080/"; //or should I add "/jira" to the end?
+            final String basePath = "http://localhost:2990/"; // or should I add
+                                                              // "/jira" to the
+                                                              // end?
             final int pageSize = 2;
-            
+
             int startAt = 0;
             int maxResults = pageSize;
-            while (true){
+            log.info("Initialising Jira issues manually");
+            while (true) {
                 UriBuilder builder = UriBuilder.fromUri(basePath);
                 builder.path("rest/api/2/search");
-                //builder.queryParam("assignee", "admin");
+                // builder.queryParam("assignee", "admin");
                 builder.queryParam("startAt", startAt);
                 builder.queryParam("maxResults", maxResults);
-                
+
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet(builder.build());
                 String encoding = Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
                 request.setHeader("Authorization", "Basic " + encoding);
                 request.setHeader("Accept", "application/json");
                 HttpResponse response = client.execute(request);
-                
+
                 InputStream inputStream = response.getEntity().getContent();
                 ObjectMapper mapper = new ObjectMapper();
 
-                Map<String,Object> jsonData = new HashMap<String,Object>();
+                Map<String, Object> jsonData = new HashMap<String, Object>();
                 jsonData = mapper.readValue(inputStream, Map.class);
                 ArrayList<Object> issuesData = (ArrayList<Object>) jsonData.get("issues");
-                if (issuesData.size() == 0){
+                if (issuesData.size() == 0) {
+                    log.warn("Response contained 0 issues, finishing...");
                     break;
                 }
-                
+
                 ChangeRequest[] issues = new ChangeRequest[issuesData.size()];
                 int i = 0;
                 for (Object issueData : issuesData) {
@@ -181,17 +186,18 @@ public class JiraWebhooksService
                 }
 
                 try {
-                    JiraAdaptorManager.store.updateResources(new URI ("urn:x-arq:DefaultGraph"), issues);
-                } catch (Exception e) {                
+                    JiraAdaptorManager.store.updateResources(new URI("urn:x-arq:DefaultGraph"), issues);
+                    log.debug("Issues were persisted in the triplestore");
+                } catch (Exception e) {
                     log.error("Failed to perform an initial update of Issues resources", e);
-                } 
+                }
 
-                startAt = startAt+maxResults;
+                startAt = startAt + maxResults;
             }
         } catch (Exception e) {
             log.error("Failed to perform an initial update of Issues resources", e);
         }
-        
+
         return Response.ok().build();
     }
 
@@ -199,6 +205,7 @@ public class JiraWebhooksService
         ServiceProviderCatalog spc = null;
         try {
             spc = ActiveDirectoryAdaptorClient.getServiceProviderCatalog();
+            log.info("Querying the person via the SPC '{}'", spc);
         } catch (Exception e) {
             log.error("Failed to get the ServiceProviderCatalog", e);
             return null;
@@ -214,7 +221,7 @@ public class JiraWebhooksService
         OslcQueryParameters queryParameters = new OslcQueryParameters();
         queryParameters.setWhere(where);
         OslcQuery query = new OslcQuery(client, queryBase.toString(), queryParameters);
-        OslcQueryResult queryResults = query.submit();    
+        OslcQueryResult queryResults = query.submit();
         String[] urls = queryResults.getMembersUrls();
         if (urls.length == 0) {
             log.error("No User instance identified with name:" + name);
@@ -231,7 +238,5 @@ public class JiraWebhooksService
             return null;
         }
     }
-
-
 
 }
