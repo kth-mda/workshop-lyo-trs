@@ -37,12 +37,13 @@ import jira.rdf.scania.com.resources.Project;
 
 // Start of user code imports
 import java.util.ArrayList;
-import org.eclipse.lyo.tools.store.Store;
-import org.eclipse.lyo.tools.store.StoreFactory;
+import org.eclipse.lyo.store.Store;
+import org.eclipse.lyo.store.StoreFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.util.Properties;
 // End of user code
@@ -67,7 +68,8 @@ public class JiraAdaptorManager {
         // Start of user code contextInitializeServletListener
         try {
             Properties props = new Properties();
-            props.load(new FileInputStream("src\\main\\resources\\jira.properties"));
+            InputStream jiraPropertiesStream = JiraAdaptorManager.class.getClassLoader().getResourceAsStream("jira.properties");
+            props.load(jiraPropertiesStream);
             String sparqlQueryUrl = props.getProperty("sparqlQueryUrl");
             String sparqlUpdateUrl = props.getProperty("sparqlUpdateUrl");
             store = StoreFactory.sparql(sparqlQueryUrl, sparqlUpdateUrl);
