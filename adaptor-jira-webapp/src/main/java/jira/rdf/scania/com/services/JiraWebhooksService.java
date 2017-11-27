@@ -102,6 +102,8 @@ public class JiraWebhooksService {
             //TODO distinguish change kind
             JiraAdaptorManager.changeProvider.addResourceChange(ChangeKind.MODIFICATION, aChangeRequest);
             
+            JiraAdaptorManager.updateManager.submit(null, new Object());
+            
             //Save the ChangeRequest resource into a triplestore.
             JiraAdaptorManager.store.updateResources(new URI("urn:x-arq:DefaultGraph"), aChangeRequest);
             log.debug("Jira webhook issue update was successfully persisted in the triplestore");

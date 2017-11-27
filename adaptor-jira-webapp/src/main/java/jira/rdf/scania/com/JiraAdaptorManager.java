@@ -63,7 +63,7 @@ public class JiraAdaptorManager {
 	private static final Logger log = LoggerFactory.getLogger(JiraAdaptorManager.class);
 
 	public static JiraChangeProvider changeProvider;
-    private static StoreUpdateManager<Object> updateManager;
+    public static StoreUpdateManager<Object> updateManager;
     private static MqttClient client;
     // End of user code
     
@@ -86,9 +86,10 @@ public class JiraAdaptorManager {
             changeProvider = new JiraChangeProvider();
             updateManager = new StoreUpdateManager<>(store, changeProvider);
             String topic = "TRSServer";
-            client = new MqttClient("localhost:1883", "JiraAdaptor");
+            client = new MqttClient("tcp://localhost:1883", "JiraAdaptor");
             client.connect();
             updateManager.addHandler(new TrsMqttChangeLogHandler<Object>(JiraTrsService.changeHistories, client, topic));
+            //updateManager.poll(null, 5);
         } catch (IOException e) {
             log.error("problem loading properties file", e);
             System.exit(1);
