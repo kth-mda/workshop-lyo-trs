@@ -26,7 +26,7 @@
     @OslcNamespaceDefinition(prefix = OslcConstants.OSLC_DATA_NAMESPACE_PREFIX,           namespaceURI = OslcConstants.OSLC_DATA_NAMESPACE),
     @OslcNamespaceDefinition(prefix = OslcConstants.RDF_NAMESPACE_PREFIX,                 namespaceURI = OslcConstants.RDF_NAMESPACE),
     @OslcNamespaceDefinition(prefix = OslcConstants.RDFS_NAMESPACE_PREFIX,                namespaceURI = OslcConstants.RDFS_NAMESPACE),
-    @OslcNamespaceDefinition(prefix = ActiveDirectoryAdaptorConstants.FOAF_NAMSPACE_PREFIX, namespaceURI = ActiveDirectoryAdaptorConstants.FOAF_NAMSPACE)
+    @OslcNamespaceDefinition(prefix = FoafConstants.FOAF_NAMSPACE_PREFIX, namespaceURI = FoafConstants.FOAF_NAMSPACE)
 })
 package jira.rdf.scania.com.resources;
 
@@ -34,5 +34,5 @@ import org.eclipse.lyo.oslc4j.core.annotation.OslcNamespaceDefinition;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcSchema;
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 
-import jira.rdf.scania.com.ActiveDirectoryAdaptorConstants;
+import jira.rdf.scania.com.resources.FoafConstants;
 

@@ -15,9 +15,9 @@
  *     Alberto Giammaria    - initial API and implementation
  *     Chris Peters         - initial API and implementation
  *     Gianluca Bernardini  - initial API and implementation
- *	   Sam Padgett          - initial API and implementation
+ *       Sam Padgett          - initial API and implementation
  *     Michael Fiedler      - adapted for OSLC4J
- *     Jad El-khoury        - initial implementation of code generator (https://bugs.eclipse.org/bugs/show_bug.cgi?id=422448)
+ *     Jad El-khoury        - initial implementation of code generator (422448)
  *     Matthieu Helleboid   - Support for multiple Service Providers.
  *     Anass Radouani       - Support for multiple Service Providers.
  *
@@ -68,8 +68,11 @@ import org.eclipse.lyo.oslc4j.core.model.ValueType;
 import org.eclipse.lyo.oslc4j.core.model.ResourceShape;
 import org.eclipse.lyo.oslc4j.core.model.ResourceShapeFactory;
 
-import jira.rdf.scania.com.servlet.ServletListener;
-import jira.rdf.scania.com.JiraAdaptorConstants;
+import jira.rdf.scania.com.resources.Oslc_cmConstants;
+import jira.rdf.scania.com.resources.DctermsConstants;
+import jira.rdf.scania.com.resources.FoafConstants;
+import jira.rdf.scania.com.resources.JiraConstants;
+import jira.rdf.scania.com.resources.Oslc_cmConstants;
 import jira.rdf.scania.com.resources.Person;
 import jira.rdf.scania.com.resources.Project;
 
@@ -81,9 +84,9 @@ import jira.rdf.scania.com.resources.Project;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(JiraAdaptorConstants.OSLC_CM_NAMSPACE)
-@OslcName(JiraAdaptorConstants.CHANGEREQUEST)
-@OslcResourceShape(title = "Change Request Resource Shape", describes = JiraAdaptorConstants.TYPE_CHANGEREQUEST)
+@OslcNamespace(Oslc_cmConstants.OSLC_CM_NAMSPACE)
+@OslcName(Oslc_cmConstants.CHANGEREQUEST)
+@OslcResourceShape(title = "Change Request Resource Shape", describes = Oslc_cmConstants.TYPE_CHANGEREQUEST)
 public class ChangeRequest
     extends AbstractResource
     implements IChangeRequest
@@ -129,6 +132,10 @@ public class ChangeRequest
         // End of user code
     }
     
+    /**
+    * @deprecated Use the methods in class {@link jira.rdf.scania.com.JiraAdaptorResourcesFactory} instead.
+    */
+    @Deprecated
     public ChangeRequest(final String serviceProviderId, final String changeRequestId)
            throws URISyntaxException
     {
@@ -137,9 +144,13 @@ public class ChangeRequest
         // End of user code
     }
     
+    /**
+    * @deprecated Use the methods in class {@link jira.rdf.scania.com.JiraAdaptorResourcesFactory} instead.
+    */
+    @Deprecated
     public static URI constructURI(final String serviceProviderId, final String changeRequestId)
     {
-        String basePath = ServletListener.getServicesBase();
+        String basePath = OSLC4JUtils.getServletURI();
         Map<String, Object> pathParameters = new HashMap<String, Object>();
         pathParameters.put("serviceProviderId", serviceProviderId);
         pathParameters.put("changeRequestId", changeRequestId);
@@ -149,20 +160,28 @@ public class ChangeRequest
         return builder.path(instanceURI).buildFromMap(pathParameters);
     }
     
+    /**
+    * @deprecated Use the methods in class {@link jira.rdf.scania.com.JiraAdaptorResourcesFactory} instead.
+    */
+    @Deprecated
     public static Link constructLink(final String serviceProviderId, final String changeRequestId , final String label)
     {
         return new Link(constructURI(serviceProviderId, changeRequestId), label);
     }
     
+    /**
+    * @deprecated Use the methods in class {@link jira.rdf.scania.com.JiraAdaptorResourcesFactory} instead.
+    */
+    @Deprecated
     public static Link constructLink(final String serviceProviderId, final String changeRequestId)
     {
         return new Link(constructURI(serviceProviderId, changeRequestId));
     }
     
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
-        return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getPublicURI(), 
-        OslcConstants.PATH_RESOURCE_SHAPES, 
-        JiraAdaptorConstants.PATH_CHANGEREQUEST,  
+        return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
+        OslcConstants.PATH_RESOURCE_SHAPES,
+        Oslc_cmConstants.PATH_CHANGEREQUEST,
         ChangeRequest.class);
     }
     
@@ -210,7 +229,7 @@ public class ChangeRequest
             // End of user code
         }
         else {
-            result = "<a href=\"" + getAbout() + "\">" + toString() + "</a>";
+            result = "<a href=\"" + getAbout() + "\" class=\"oslc-resource-link\">" + toString() + "</a>";
         }
     
         // Start of user code toHtml_finalize
@@ -223,7 +242,7 @@ public class ChangeRequest
     // Start of user code getterAnnotation:identifier
     // End of user code
     @OslcName("identifier")
-    @OslcPropertyDefinition(JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE + "identifier")
+    @OslcPropertyDefinition(DctermsConstants.DUBLIN_CORE_NAMSPACE + "identifier")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.String)
     @OslcReadOnly(false)
@@ -237,7 +256,7 @@ public class ChangeRequest
     // Start of user code getterAnnotation:title
     // End of user code
     @OslcName("title")
-    @OslcPropertyDefinition(JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE + "title")
+    @OslcPropertyDefinition(DctermsConstants.DUBLIN_CORE_NAMSPACE + "title")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.XMLLiteral)
     @OslcReadOnly(false)
@@ -251,7 +270,7 @@ public class ChangeRequest
     // Start of user code getterAnnotation:description
     // End of user code
     @OslcName("description")
-    @OslcPropertyDefinition(JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE + "description")
+    @OslcPropertyDefinition(DctermsConstants.DUBLIN_CORE_NAMSPACE + "description")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.XMLLiteral)
     @OslcReadOnly(false)
@@ -265,10 +284,10 @@ public class ChangeRequest
     // Start of user code getterAnnotation:creator
     // End of user code
     @OslcName("creator")
-    @OslcPropertyDefinition(JiraAdaptorConstants.OSLC_CM_NAMSPACE + "creator")
+    @OslcPropertyDefinition(Oslc_cmConstants.OSLC_CM_NAMSPACE + "creator")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({JiraAdaptorConstants.TYPE_PERSON})
+    @OslcRange({FoafConstants.TYPE_PERSON})
     @OslcReadOnly(false)
     public Link getCreator()
     {
@@ -280,7 +299,7 @@ public class ChangeRequest
     // Start of user code getterAnnotation:created
     // End of user code
     @OslcName("created")
-    @OslcPropertyDefinition(JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE + "created")
+    @OslcPropertyDefinition(DctermsConstants.DUBLIN_CORE_NAMSPACE + "created")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.DateTime)
     @OslcReadOnly(false)
@@ -294,10 +313,10 @@ public class ChangeRequest
     // Start of user code getterAnnotation:project
     // End of user code
     @OslcName("project")
-    @OslcPropertyDefinition(JiraAdaptorConstants.OSLC_CM_NAMSPACE + "project")
+    @OslcPropertyDefinition(Oslc_cmConstants.OSLC_CM_NAMSPACE + "project")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({JiraAdaptorConstants.TYPE_PROJECT})
+    @OslcRange({JiraConstants.TYPE_PROJECT})
     @OslcReadOnly(false)
     public Link getProject()
     {
@@ -497,20 +516,15 @@ public class ChangeRequest
     {
         String s = "";
     
-        // Start of user code identifiertoHtml_init
-        // End of user code
-    
-        s = s + "<label for=\"identifier\"><strong>identifier</strong>: </LABEL>";
-    
         // Start of user code identifiertoHtml_mid
         // End of user code
     
         try {
             if (identifier == null) {
-                s= s + "<em>null</em>";
+                s = s + "<em>null</em>";
             }
             else {
-                s= s + identifier.toString();
+                s = s + identifier.toString();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -526,20 +540,15 @@ public class ChangeRequest
     {
         String s = "";
     
-        // Start of user code titletoHtml_init
-        // End of user code
-    
-        s = s + "<label for=\"title\"><strong>title</strong>: </LABEL>";
-    
         // Start of user code titletoHtml_mid
         // End of user code
     
         try {
             if (title == null) {
-                s= s + "<em>null</em>";
+                s = s + "<em>null</em>";
             }
             else {
-                s= s + title.toString();
+                s = s + title.toString();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -555,20 +564,15 @@ public class ChangeRequest
     {
         String s = "";
     
-        // Start of user code descriptiontoHtml_init
-        // End of user code
-    
-        s = s + "<label for=\"description\"><strong>description</strong>: </LABEL>";
-    
         // Start of user code descriptiontoHtml_mid
         // End of user code
     
         try {
             if (description == null) {
-                s= s + "<em>null</em>";
+                s = s + "<em>null</em>";
             }
             else {
-                s= s + description.toString();
+                s = s + description.toString();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -584,16 +588,16 @@ public class ChangeRequest
     {
         String s = "";
     
-        // Start of user code creatortoHtml_init
-        // End of user code
-    
-        s = s + "<label for=\"creator\"><strong>creator</strong>: </LABEL>";
-    
         // Start of user code creatortoHtml_mid
         // End of user code
     
         try {
-            s = s + (new Person (creator.getValue())).toHtml(false);
+            if ((creator == null) || (creator.getValue() == null)) {
+                s = s + "<em>null</em>";
+            }
+            else {
+                s = s + (new Person (creator.getValue())).toHtml(false);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -608,20 +612,15 @@ public class ChangeRequest
     {
         String s = "";
     
-        // Start of user code createdtoHtml_init
-        // End of user code
-    
-        s = s + "<label for=\"created\"><strong>created</strong>: </LABEL>";
-    
         // Start of user code createdtoHtml_mid
         // End of user code
     
         try {
             if (created == null) {
-                s= s + "<em>null</em>";
+                s = s + "<em>null</em>";
             }
             else {
-                s= s + created.toString();
+                s = s + created.toString();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -637,16 +636,16 @@ public class ChangeRequest
     {
         String s = "";
     
-        // Start of user code projecttoHtml_init
-        // End of user code
-    
-        s = s + "<label for=\"project\"><strong>project</strong>: </LABEL>";
-    
         // Start of user code projecttoHtml_mid
         // End of user code
     
         try {
-            s = s + (new Project (project.getValue())).toHtml(false);
+            if ((project == null) || (project.getValue() == null)) {
+                s = s + "<em>null</em>";
+            }
+            else {
+                s = s + (new Project (project.getValue())).toHtml(false);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

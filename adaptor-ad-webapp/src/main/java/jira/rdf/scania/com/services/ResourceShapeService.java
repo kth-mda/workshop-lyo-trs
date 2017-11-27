@@ -21,6 +21,7 @@ package jira.rdf.scania.com.services;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +40,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
+import org.eclipse.lyo.oslc4j.core.model.OslcMediaType;
+import org.eclipse.lyo.oslc4j.application.OslcResourceShapeResource;
 import org.eclipse.lyo.oslc4j.core.exception.OslcCoreApplicationException;
 import org.eclipse.lyo.oslc4j.core.model.ResourceShape;
 
@@ -56,12 +59,43 @@ public class ResourceShapeService
     @Context private HttpServletRequest httpServletRequest;
     @Context private HttpServletResponse httpServletResponse;
     @Context private UriInfo uriInfo;
+    @Context private javax.ws.rs.core.Application jaxrsApplication; 
 
     private static final Logger log = LoggerFactory.getLogger(ResourceShapeService.class.getName());
+    private OslcResourceShapeResource oslcResourceShapeResource = null;
 
     public ResourceShapeService()
     {
         super();
+    }
+
+    private OslcResourceShapeResource getOslcResourceShapeResource()
+    {
+        if (oslcResourceShapeResource != null)
+        {
+            return oslcResourceShapeResource;
+        }
+        Application oslcApplication = (Application) jaxrsApplication;
+        Set<Object> resourceInstances = oslcApplication.getInstances();
+        for (Object resourceInstance : resourceInstances) {
+            if (resourceInstance instanceof OslcResourceShapeResource)
+            {
+                oslcResourceShapeResource = (OslcResourceShapeResource) resourceInstance;
+                break;
+            }
+        }
+        return oslcResourceShapeResource;
+    }
+
+    @GET
+    @Path("{resourceShapePath}")
+    @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.TEXT_XML, OslcMediaType.APPLICATION_JSON, OslcMediaType.TEXT_TURTLE})
+    public ResourceShape getResourceShape(@Context                        final HttpServletRequest httpServletRequest,
+                                          @PathParam("resourceShapePath") final String             resourceShapePath)
+           throws OslcCoreApplicationException,
+                  URISyntaxException
+    {
+        return getOslcResourceShapeResource().getResourceShape(httpServletRequest, resourceShapePath);
     }
 
     @GET

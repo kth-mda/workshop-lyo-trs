@@ -15,9 +15,9 @@
  *     Alberto Giammaria    - initial API and implementation
  *     Chris Peters         - initial API and implementation
  *     Gianluca Bernardini  - initial API and implementation
- *	   Sam Padgett          - initial API and implementation
+ *       Sam Padgett          - initial API and implementation
  *     Michael Fiedler      - adapted for OSLC4J
- *     Jad El-khoury        - initial implementation of code generator (https://bugs.eclipse.org/bugs/show_bug.cgi?id=422448)
+ *     Jad El-khoury        - initial implementation of code generator (422448)
  *     Matthieu Helleboid   - Support for multiple Service Providers.
  *     Anass Radouani       - Support for multiple Service Providers.
  *
@@ -68,8 +68,8 @@ import org.eclipse.lyo.oslc4j.core.model.ValueType;
 import org.eclipse.lyo.oslc4j.core.model.ResourceShape;
 import org.eclipse.lyo.oslc4j.core.model.ResourceShapeFactory;
 
-import jira.rdf.scania.com.servlet.ServletListener;
-import jira.rdf.scania.com.JiraAdaptorConstants;
+import jira.rdf.scania.com.resources.JiraConstants;
+import jira.rdf.scania.com.resources.DctermsConstants;
 
 // Start of user code imports
 // End of user code
@@ -79,9 +79,9 @@ import jira.rdf.scania.com.JiraAdaptorConstants;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(JiraAdaptorConstants.JIRA_NAMSPACE)
-@OslcName(JiraAdaptorConstants.PROJECT)
-@OslcResourceShape(title = "Project Resource Shape", describes = JiraAdaptorConstants.TYPE_PROJECT)
+@OslcNamespace(JiraConstants.JIRA_NAMSPACE)
+@OslcName(JiraConstants.PROJECT)
+@OslcResourceShape(title = "Project Resource Shape", describes = JiraConstants.TYPE_PROJECT)
 public class Project
     extends AbstractResource
     implements IProject
@@ -115,6 +115,10 @@ public class Project
         // End of user code
     }
     
+    /**
+    * @deprecated Use the methods in class {@link jira.rdf.scania.com.JiraAdaptorResourcesFactory} instead.
+    */
+    @Deprecated
     public Project(final String serviceProviderId, final String projectId)
            throws URISyntaxException
     {
@@ -123,9 +127,13 @@ public class Project
         // End of user code
     }
     
+    /**
+    * @deprecated Use the methods in class {@link jira.rdf.scania.com.JiraAdaptorResourcesFactory} instead.
+    */
+    @Deprecated
     public static URI constructURI(final String serviceProviderId, final String projectId)
     {
-        String basePath = ServletListener.getServicesBase();
+        String basePath = OSLC4JUtils.getServletURI();
         Map<String, Object> pathParameters = new HashMap<String, Object>();
         pathParameters.put("serviceProviderId", serviceProviderId);
         pathParameters.put("projectId", projectId);
@@ -135,20 +143,28 @@ public class Project
         return builder.path(instanceURI).buildFromMap(pathParameters);
     }
     
+    /**
+    * @deprecated Use the methods in class {@link jira.rdf.scania.com.JiraAdaptorResourcesFactory} instead.
+    */
+    @Deprecated
     public static Link constructLink(final String serviceProviderId, final String projectId , final String label)
     {
         return new Link(constructURI(serviceProviderId, projectId), label);
     }
     
+    /**
+    * @deprecated Use the methods in class {@link jira.rdf.scania.com.JiraAdaptorResourcesFactory} instead.
+    */
+    @Deprecated
     public static Link constructLink(final String serviceProviderId, final String projectId)
     {
         return new Link(constructURI(serviceProviderId, projectId));
     }
     
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
-        return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getPublicURI(), 
-        OslcConstants.PATH_RESOURCE_SHAPES, 
-        JiraAdaptorConstants.PATH_PROJECT,  
+        return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
+        OslcConstants.PATH_RESOURCE_SHAPES,
+        JiraConstants.PATH_PROJECT,
         Project.class);
     }
     
@@ -196,7 +212,7 @@ public class Project
             // End of user code
         }
         else {
-            result = "<a href=\"" + getAbout() + "\">" + toString() + "</a>";
+            result = "<a href=\"" + getAbout() + "\" class=\"oslc-resource-link\">" + toString() + "</a>";
         }
     
         // Start of user code toHtml_finalize
@@ -209,7 +225,7 @@ public class Project
     // Start of user code getterAnnotation:identifier
     // End of user code
     @OslcName("identifier")
-    @OslcPropertyDefinition(JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE + "identifier")
+    @OslcPropertyDefinition(DctermsConstants.DUBLIN_CORE_NAMSPACE + "identifier")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.String)
     @OslcReadOnly(false)
@@ -223,7 +239,7 @@ public class Project
     // Start of user code getterAnnotation:title
     // End of user code
     @OslcName("title")
-    @OslcPropertyDefinition(JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE + "title")
+    @OslcPropertyDefinition(DctermsConstants.DUBLIN_CORE_NAMSPACE + "title")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.XMLLiteral)
     @OslcReadOnly(false)
@@ -303,20 +319,15 @@ public class Project
     {
         String s = "";
     
-        // Start of user code identifiertoHtml_init
-        // End of user code
-    
-        s = s + "<label for=\"identifier\"><strong>identifier</strong>: </LABEL>";
-    
         // Start of user code identifiertoHtml_mid
         // End of user code
     
         try {
             if (identifier == null) {
-                s= s + "<em>null</em>";
+                s = s + "<em>null</em>";
             }
             else {
-                s= s + identifier.toString();
+                s = s + identifier.toString();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -332,20 +343,15 @@ public class Project
     {
         String s = "";
     
-        // Start of user code titletoHtml_init
-        // End of user code
-    
-        s = s + "<label for=\"title\"><strong>title</strong>: </LABEL>";
-    
         // Start of user code titletoHtml_mid
         // End of user code
     
         try {
             if (title == null) {
-                s= s + "<em>null</em>";
+                s = s + "<em>null</em>";
             }
             else {
-                s= s + title.toString();
+                s = s + title.toString();
             }
         } catch (Exception e) {
             e.printStackTrace();

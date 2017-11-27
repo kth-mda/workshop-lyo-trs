@@ -16,7 +16,7 @@
  *     Chris Peters         - initial API and implementation
  *     Gianluca Bernardini  - initial API and implementation
  *     Michael Fiedler      - adapted for Bugzilla service provider
- *     Jad El-khoury        - initial implementation of code generator (https://bugs.eclipse.org/bugs/show_bug.cgi?id=422448)
+ *     Jad El-khoury        - initial implementation of code generator (422448)
  *     Matthieu Helleboid   - initialize each service provider separately
  *     Anass Radouani       - initialize each service provider separately
  *
@@ -45,6 +45,7 @@ import org.eclipse.lyo.oslc4j.core.model.Publisher;
 import org.eclipse.lyo.oslc4j.core.model.Service;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProviderCatalog;
+import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
 
 import jira.rdf.scania.com.ActiveDirectoryAdaptorManager;
 import jira.rdf.scania.com.ServiceProviderInfo;
@@ -67,13 +68,12 @@ import jira.rdf.scania.com.ServiceProviderInfo;
  */
 public class ServiceProviderCatalogSingleton
 {
-    private static final ServiceProviderCatalog             serviceProviderCatalog;
+    private static final ServiceProviderCatalog serviceProviderCatalog;
     private static final SortedMap<String, ServiceProvider> serviceProviders = new TreeMap<String, ServiceProvider>();
 
-    static
-    {
+    static {
         serviceProviderCatalog = new ServiceProviderCatalog();
-        URI catalogUri = UriBuilder.fromUri(ServletListener.getServicesBase()).path("/catalog/singleton").build();
+        URI catalogUri = UriBuilder.fromUri(OSLC4JUtils.getServletURI()).path("/catalog/singleton").build();
         serviceProviderCatalog.setAbout(catalogUri);
         serviceProviderCatalog.setTitle("Service Provider Catalog");
         serviceProviderCatalog.setDescription("Service Provider Catalog");
@@ -108,7 +108,7 @@ public class ServiceProviderCatalogSingleton
 
     private static URI constructServiceProviderURI(final String serviceProviderId)
     {
-        String basePath = ServletListener.getServicesBase();
+        String basePath = OSLC4JUtils.getServletURI();
         Map<String, Object> pathParameters = new HashMap<String, Object>();
         pathParameters.put("serviceProviderId", serviceProviderId);
         String instanceURI = "serviceProviders/{serviceProviderId}";
@@ -206,7 +206,8 @@ public class ServiceProviderCatalogSingleton
     {
         synchronized(serviceProviders)
         {
-            final ServiceProvider deregisteredServiceProvider = serviceProviders.remove(serviceProviderIdentifier(serviceProviderId));
+            final ServiceProvider deregisteredServiceProvider =
+                serviceProviders.remove(serviceProviderIdentifier(serviceProviderId));
 
             if (deregisteredServiceProvider != null)
             {
@@ -261,16 +262,19 @@ public class ServiceProviderCatalogSingleton
             // Start of user code initServiceProviders
             // End of user code
 
-            String basePath = ServletListener.getServicesBase();
-            
+            String basePath = OSLC4JUtils.getServletURI();
+
             ServiceProviderInfo [] serviceProviderInfos = ActiveDirectoryAdaptorManager.getServiceProviderInfos(httpServletRequest);
             //Register each service provider
             for (ServiceProviderInfo serviceProviderInfo : serviceProviderInfos) {
                 String identifier = serviceProviderIdentifier(serviceProviderInfo.serviceProviderId);
-                if (! serviceProviders.containsKey(identifier)) {
+                if (!serviceProviders.containsKey(identifier)) {
                     String serviceProviderName = serviceProviderInfo.name;
-                    String title = "Service Provider: " + serviceProviderName + "(" + identifier + ")";
-                    String description = "Service Provider: " + serviceProviderName + "(" + identifier + ")";
+                    String title = String.format("Service Provider '%s'", serviceProviderName);
+                    String description = String.format("%s (id: %s; kind: %s)",
+                        "Service Provider",
+                        identifier,
+                        "Service Provider");
                     Publisher publisher = null;
                     Map<String, Object> parameterMap = new HashMap<String, Object>();
                     parameterMap.put("serviceProviderId", serviceProviderInfo.serviceProviderId);

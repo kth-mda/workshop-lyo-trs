@@ -37,8 +37,8 @@ import org.eclipse.lyo.oslc4j.core.model.Publisher;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProviderFactory;
 
-import jira.rdf.scania.com.ActiveDirectoryAdaptorConstants;
-import jira.rdf.scania.com.services.PersonService;
+import jira.rdf.scania.com.resources.FoafConstants;
+import jira.rdf.scania.com.services.ServiceProviderService1;
 
 // Start of user code imports
 // End of user code
@@ -47,7 +47,7 @@ public class ServiceProvidersFactory
 {
     private static Class<?>[] RESOURCE_CLASSES =
     {
-        PersonService.class
+        ServiceProviderService1.class
     };
 
     private ServiceProvidersFactory()
@@ -75,7 +75,7 @@ public class ServiceProvidersFactory
             new PrefixDefinition(OslcConstants.OSLC_DATA_NAMESPACE_PREFIX, new URI(OslcConstants.OSLC_DATA_NAMESPACE)),
             new PrefixDefinition(OslcConstants.RDF_NAMESPACE_PREFIX, new URI(OslcConstants.RDF_NAMESPACE)),
             new PrefixDefinition(OslcConstants.RDFS_NAMESPACE_PREFIX, new URI(OslcConstants.RDFS_NAMESPACE)),
-            new PrefixDefinition(ActiveDirectoryAdaptorConstants.FOAF_NAMSPACE_PREFIX, new URI(ActiveDirectoryAdaptorConstants.FOAF_NAMSPACE))
+            new PrefixDefinition(FoafConstants.FOAF_NAMSPACE_PREFIX, new URI(FoafConstants.FOAF_NAMSPACE))
         };
 
         serviceProvider.setPrefixDefinitions(prefixDefinitions);

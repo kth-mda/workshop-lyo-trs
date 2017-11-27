@@ -37,9 +37,12 @@ import org.eclipse.lyo.oslc4j.core.model.Publisher;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProviderFactory;
 
-import jira.rdf.scania.com.JiraAdaptorConstants;
-import jira.rdf.scania.com.services.ChangeRequestService;
-import jira.rdf.scania.com.services.ProjectService;
+import jira.rdf.scania.com.resources.DctermsConstants;
+import jira.rdf.scania.com.resources.FoafConstants;
+import jira.rdf.scania.com.resources.JiraConstants;
+import jira.rdf.scania.com.resources.Oslc_cmConstants;
+import jira.rdf.scania.com.services.ServiceProviderService1;
+import jira.rdf.scania.com.services.ServiceProviderService2;
 
 // Start of user code imports
 // End of user code
@@ -48,7 +51,7 @@ public class ServiceProvidersFactory
 {
     private static Class<?>[] RESOURCE_CLASSES =
     {
-        ChangeRequestService.class, ProjectService.class
+        ServiceProviderService1.class, ServiceProviderService2.class
     };
 
     private ServiceProvidersFactory()
@@ -76,13 +79,13 @@ public class ServiceProvidersFactory
             new PrefixDefinition(OslcConstants.OSLC_DATA_NAMESPACE_PREFIX, new URI(OslcConstants.OSLC_DATA_NAMESPACE)),
             new PrefixDefinition(OslcConstants.RDF_NAMESPACE_PREFIX, new URI(OslcConstants.RDF_NAMESPACE)),
             new PrefixDefinition(OslcConstants.RDFS_NAMESPACE_PREFIX, new URI(OslcConstants.RDFS_NAMESPACE)),
-            new PrefixDefinition(JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE_PREFIX, new URI(JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE))
+            new PrefixDefinition(DctermsConstants.DUBLIN_CORE_NAMSPACE_PREFIX, new URI(DctermsConstants.DUBLIN_CORE_NAMSPACE))
 ,
-            new PrefixDefinition(JiraAdaptorConstants.FOAF_NAMSPACE_PREFIX, new URI(JiraAdaptorConstants.FOAF_NAMSPACE))
+            new PrefixDefinition(FoafConstants.FOAF_NAMSPACE_PREFIX, new URI(FoafConstants.FOAF_NAMSPACE))
 ,
-            new PrefixDefinition(JiraAdaptorConstants.JIRA_NAMSPACE_PREFIX, new URI(JiraAdaptorConstants.JIRA_NAMSPACE))
+            new PrefixDefinition(JiraConstants.JIRA_NAMSPACE_PREFIX, new URI(JiraConstants.JIRA_NAMSPACE))
 ,
-            new PrefixDefinition(JiraAdaptorConstants.OSLC_CM_NAMSPACE_PREFIX, new URI(JiraAdaptorConstants.OSLC_CM_NAMSPACE))
+            new PrefixDefinition(Oslc_cmConstants.OSLC_CM_NAMSPACE_PREFIX, new URI(Oslc_cmConstants.OSLC_CM_NAMSPACE))
         };
 
         serviceProvider.setPrefixDefinitions(prefixDefinitions);

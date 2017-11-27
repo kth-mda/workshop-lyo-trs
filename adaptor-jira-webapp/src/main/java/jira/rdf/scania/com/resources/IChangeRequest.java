@@ -62,62 +62,65 @@ import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 import org.eclipse.lyo.oslc4j.core.model.Representation;
 import org.eclipse.lyo.oslc4j.core.model.ValueType;
 
-import jira.rdf.scania.com.servlet.ServletListener;
-import jira.rdf.scania.com.JiraAdaptorConstants;
+import jira.rdf.scania.com.resources.Oslc_cmConstants;
+import jira.rdf.scania.com.resources.DctermsConstants;
+import jira.rdf.scania.com.resources.FoafConstants;
+import jira.rdf.scania.com.resources.JiraConstants;
+import jira.rdf.scania.com.resources.Oslc_cmConstants;
 import jira.rdf.scania.com.resources.IPerson;
 import jira.rdf.scania.com.resources.IProject;
 
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(JiraAdaptorConstants.OSLC_CM_NAMSPACE)
-@OslcName(JiraAdaptorConstants.CHANGEREQUEST)
-@OslcResourceShape(title = "Change Request Resource Shape", describes = JiraAdaptorConstants.TYPE_CHANGEREQUEST)
+@OslcNamespace(Oslc_cmConstants.OSLC_CM_NAMSPACE)
+@OslcName(Oslc_cmConstants.CHANGEREQUEST)
+@OslcResourceShape(title = "Change Request Resource Shape", describes = Oslc_cmConstants.TYPE_CHANGEREQUEST)
 public interface IChangeRequest
 {
 
 
     @OslcName("identifier")
-    @OslcPropertyDefinition(JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE + "identifier")
+    @OslcPropertyDefinition(DctermsConstants.DUBLIN_CORE_NAMSPACE + "identifier")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.String)
     @OslcReadOnly(false)
     public String getIdentifier();
 
     @OslcName("title")
-    @OslcPropertyDefinition(JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE + "title")
+    @OslcPropertyDefinition(DctermsConstants.DUBLIN_CORE_NAMSPACE + "title")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.XMLLiteral)
     @OslcReadOnly(false)
     public String getTitle();
 
     @OslcName("description")
-    @OslcPropertyDefinition(JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE + "description")
+    @OslcPropertyDefinition(DctermsConstants.DUBLIN_CORE_NAMSPACE + "description")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.XMLLiteral)
     @OslcReadOnly(false)
     public String getDescription();
 
     @OslcName("creator")
-    @OslcPropertyDefinition(JiraAdaptorConstants.OSLC_CM_NAMSPACE + "creator")
+    @OslcPropertyDefinition(Oslc_cmConstants.OSLC_CM_NAMSPACE + "creator")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({JiraAdaptorConstants.TYPE_PERSON})
+    @OslcRange({FoafConstants.TYPE_PERSON})
     @OslcReadOnly(false)
     public Link getCreator();
 
     @OslcName("created")
-    @OslcPropertyDefinition(JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE + "created")
+    @OslcPropertyDefinition(DctermsConstants.DUBLIN_CORE_NAMSPACE + "created")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.DateTime)
     @OslcReadOnly(false)
     public Date getCreated();
 
     @OslcName("project")
-    @OslcPropertyDefinition(JiraAdaptorConstants.OSLC_CM_NAMSPACE + "project")
+    @OslcPropertyDefinition(Oslc_cmConstants.OSLC_CM_NAMSPACE + "project")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({JiraAdaptorConstants.TYPE_PROJECT})
+    @OslcRange({JiraConstants.TYPE_PROJECT})
     @OslcReadOnly(false)
     public Link getProject();
 

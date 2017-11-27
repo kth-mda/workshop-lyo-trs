@@ -33,7 +33,6 @@ import jira.rdf.scania.com.ServiceProviderInfo;
 import jira.rdf.scania.com.resources.ChangeRequest;
 import jira.rdf.scania.com.resources.Person;
 import jira.rdf.scania.com.resources.Project;
-import jira.rdf.scania.com.services.JiraTrsService;
 
 // Start of user code imports
 import java.util.ArrayList;
@@ -51,6 +50,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.Properties;
+import jira.rdf.scania.com.services.JiraTrsService;
 // End of user code
 
 // Start of user code pre_class_code
@@ -64,8 +64,8 @@ public class JiraAdaptorManager {
 
 	public static JiraChangeProvider changeProvider;
     private static StoreUpdateManager<Object> updateManager;
-    // End of user code
     private static MqttClient client;
+    // End of user code
     
     
     // Start of user code class_methods
@@ -177,18 +177,18 @@ public class JiraAdaptorManager {
 
 
 
-    public static String getETagFromChangeRequest(final ChangeRequest aResource)
-    {
-        String eTag = null;
-        // Start of user code getETagFromChangeRequest
-        // TODO Implement code to return an ETag for a particular resource
-        // End of user code
-        return eTag;
-    }
     public static String getETagFromProject(final Project aResource)
     {
         String eTag = null;
         // Start of user code getETagFromProject
+        // TODO Implement code to return an ETag for a particular resource
+        // End of user code
+        return eTag;
+    }
+    public static String getETagFromChangeRequest(final ChangeRequest aResource)
+    {
+        String eTag = null;
+        // Start of user code getETagFromChangeRequest
         // TODO Implement code to return an ETag for a particular resource
         // End of user code
         return eTag;

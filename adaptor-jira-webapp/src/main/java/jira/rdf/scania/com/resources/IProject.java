@@ -62,28 +62,28 @@ import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 import org.eclipse.lyo.oslc4j.core.model.Representation;
 import org.eclipse.lyo.oslc4j.core.model.ValueType;
 
-import jira.rdf.scania.com.servlet.ServletListener;
-import jira.rdf.scania.com.JiraAdaptorConstants;
+import jira.rdf.scania.com.resources.JiraConstants;
+import jira.rdf.scania.com.resources.DctermsConstants;
 
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(JiraAdaptorConstants.JIRA_NAMSPACE)
-@OslcName(JiraAdaptorConstants.PROJECT)
-@OslcResourceShape(title = "Project Resource Shape", describes = JiraAdaptorConstants.TYPE_PROJECT)
+@OslcNamespace(JiraConstants.JIRA_NAMSPACE)
+@OslcName(JiraConstants.PROJECT)
+@OslcResourceShape(title = "Project Resource Shape", describes = JiraConstants.TYPE_PROJECT)
 public interface IProject
 {
 
 
     @OslcName("identifier")
-    @OslcPropertyDefinition(JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE + "identifier")
+    @OslcPropertyDefinition(DctermsConstants.DUBLIN_CORE_NAMSPACE + "identifier")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.String)
     @OslcReadOnly(false)
     public String getIdentifier();
 
     @OslcName("title")
-    @OslcPropertyDefinition(JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE + "title")
+    @OslcPropertyDefinition(DctermsConstants.DUBLIN_CORE_NAMSPACE + "title")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.XMLLiteral)
     @OslcReadOnly(false)

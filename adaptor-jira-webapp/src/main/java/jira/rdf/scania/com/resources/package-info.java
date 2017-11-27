@@ -26,10 +26,10 @@
     @OslcNamespaceDefinition(prefix = OslcConstants.OSLC_DATA_NAMESPACE_PREFIX,           namespaceURI = OslcConstants.OSLC_DATA_NAMESPACE),
     @OslcNamespaceDefinition(prefix = OslcConstants.RDF_NAMESPACE_PREFIX,                 namespaceURI = OslcConstants.RDF_NAMESPACE),
     @OslcNamespaceDefinition(prefix = OslcConstants.RDFS_NAMESPACE_PREFIX,                namespaceURI = OslcConstants.RDFS_NAMESPACE),
-    @OslcNamespaceDefinition(prefix = JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE_PREFIX, namespaceURI = JiraAdaptorConstants.DUBLIN_CORE_NAMSPACE),
-    @OslcNamespaceDefinition(prefix = JiraAdaptorConstants.FOAF_NAMSPACE_PREFIX, namespaceURI = JiraAdaptorConstants.FOAF_NAMSPACE),
-    @OslcNamespaceDefinition(prefix = JiraAdaptorConstants.JIRA_NAMSPACE_PREFIX, namespaceURI = JiraAdaptorConstants.JIRA_NAMSPACE),
-    @OslcNamespaceDefinition(prefix = JiraAdaptorConstants.OSLC_CM_NAMSPACE_PREFIX, namespaceURI = JiraAdaptorConstants.OSLC_CM_NAMSPACE)
+    @OslcNamespaceDefinition(prefix = DctermsConstants.DUBLIN_CORE_NAMSPACE_PREFIX, namespaceURI = DctermsConstants.DUBLIN_CORE_NAMSPACE),
+    @OslcNamespaceDefinition(prefix = FoafConstants.FOAF_NAMSPACE_PREFIX, namespaceURI = FoafConstants.FOAF_NAMSPACE),
+    @OslcNamespaceDefinition(prefix = JiraConstants.JIRA_NAMSPACE_PREFIX, namespaceURI = JiraConstants.JIRA_NAMSPACE),
+    @OslcNamespaceDefinition(prefix = Oslc_cmConstants.OSLC_CM_NAMSPACE_PREFIX, namespaceURI = Oslc_cmConstants.OSLC_CM_NAMSPACE)
 })
 package jira.rdf.scania.com.resources;
 
@@ -37,5 +37,8 @@ import org.eclipse.lyo.oslc4j.core.annotation.OslcNamespaceDefinition;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcSchema;
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 
-import jira.rdf.scania.com.JiraAdaptorConstants;
+import jira.rdf.scania.com.resources.DctermsConstants;
+import jira.rdf.scania.com.resources.FoafConstants;
+import jira.rdf.scania.com.resources.JiraConstants;
+import jira.rdf.scania.com.resources.Oslc_cmConstants;
 
