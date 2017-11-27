@@ -37,6 +37,7 @@ import org.eclipse.lyo.oslc4j.core.model.QueryCapability;
 import org.eclipse.lyo.oslc4j.core.model.Service;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProviderCatalog;
+import org.eclipse.lyo.store.update.change.ChangeKind;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,7 +98,11 @@ public class JiraWebhooksService {
         try {
             // Transform the Json Issue into a ChangeRequest resource.
             ChangeRequest aChangeRequest = getChangeRequest(issueData);
-            // Save the ChangeRequest resource into a triplestore.
+            
+            //TODO distinguish change kind
+            JiraAdaptorManager.changeProvider.addResourceChange(ChangeKind.MODIFICATION, aChangeRequest);
+            
+            //Save the ChangeRequest resource into a triplestore.
             JiraAdaptorManager.store.updateResources(new URI("urn:x-arq:DefaultGraph"), aChangeRequest);
             log.debug("Jira webhook issue update was successfully persisted in the triplestore");
         } catch (Exception e) {

@@ -33,12 +33,17 @@ import jira.rdf.scania.com.ServiceProviderInfo;
 import jira.rdf.scania.com.resources.ChangeRequest;
 import jira.rdf.scania.com.resources.Person;
 import jira.rdf.scania.com.resources.Project;
-
+import jira.rdf.scania.com.services.JiraTrsService;
 
 // Start of user code imports
 import java.util.ArrayList;
 import org.eclipse.lyo.store.Store;
 import org.eclipse.lyo.store.StoreFactory;
+import org.eclipse.lyo.store.update.StoreUpdateManager;
+import org.eclipse.lyo.store.update.change.ChangeProvider;
+import org.eclipse.lyo.store.update.handlers.TrsMqttChangeLogHandler;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.FileInputStream;
@@ -56,7 +61,11 @@ public class JiraAdaptorManager {
     // Start of user code class_attributes
 	public static Store store = null;
 	private static final Logger log = LoggerFactory.getLogger(JiraAdaptorManager.class);
+
+	public static JiraChangeProvider changeProvider;
+    private static StoreUpdateManager<Object> updateManager;
     // End of user code
+    private static MqttClient client;
     
     
     // Start of user code class_methods
@@ -73,9 +82,19 @@ public class JiraAdaptorManager {
             String sparqlQueryUrl = props.getProperty("sparqlQueryUrl");
             String sparqlUpdateUrl = props.getProperty("sparqlUpdateUrl");
             store = StoreFactory.sparql(sparqlQueryUrl, sparqlUpdateUrl);
+            
+            changeProvider = new JiraChangeProvider();
+            updateManager = new StoreUpdateManager<>(store, changeProvider);
+            String topic = "TRSServer";
+            client = new MqttClient("localhost:1883", "JiraAdaptor");
+            client.connect();
+            updateManager.addHandler(new TrsMqttChangeLogHandler<Object>(JiraTrsService.changeHistories, client, topic));
         } catch (IOException e) {
             log.error("problem loading properties file", e);
             System.exit(1);
+        } catch (MqttException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         // End of user code
     }
