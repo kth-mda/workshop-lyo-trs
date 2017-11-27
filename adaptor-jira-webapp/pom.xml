@@ -12,14 +12,19 @@
   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   <maven.compiler.source>1.8</maven.compiler.source>
   <maven.compiler.target>1.8</maven.compiler.target>
-  <version.lyo.core>2.2.0</version.lyo.core>
-  <version.lyo.server>2.2.0</version.lyo.server>
+  <version.lyo.core>2.3.0-SNAPSHOT</version.lyo.core>
+  <version.lyo.server>2.3.0-SNAPSHOT</version.lyo.server>
 </properties>  
   <repositories>
     <repository>
       <id>lyo-releases</id>
       <name>lyo-releases repository</name>
       <url>https://repo.eclipse.org/content/repositories/lyo-releases/</url>
+    </repository>
+    <repository>
+      <id>lyo-shapshots</id>
+      <name>lyo-snapshots repository</name>
+      <url>https://repo.eclipse.org/content/repositories/lyo-snapshots/</url>
     </repository>
   </repositories>
   <dependencies>
@@ -124,8 +129,18 @@
 <dependency>
     <groupId>org.eclipse.lyo.store</groupId>
     <artifactId>store-core</artifactId>
-    <version>2.2.0</version>
+    <version>2.3.0-SNAPSHOT</version>
 </dependency>
+    <dependency>
+      <groupId>org.eclipse.lyo.store</groupId>
+      <artifactId>store-update</artifactId>
+      <version>2.3.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.lyo.trs</groupId>
+      <artifactId>trs-provider</artifactId>
+      <version>2.4.0-SNAPSHOT</version>
+    </dependency>
   </dependencies>
   <dependencyManagement>
     <dependencies>
