@@ -50,7 +50,7 @@ End of user code
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Service Provider Catalog - ActiveDirectory Adaptor OSLC Adapter</title>
+    <title>Service Provider Catalog - User Directory Adaptor OSLC Adapter</title>
 
     <link href="<c:url value="/static/css/bootstrap-4.0.0-beta.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/static/css/adaptor.css"/>" rel="stylesheet">
@@ -69,13 +69,13 @@ End of user code
   <body>
   <nav class="navbar sticky-top navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="<c:url value="/services/catalog/singleton"/>">ActiveDirectory Adaptor</a>
+      <a class="navbar-brand" href="<c:url value="/services/catalog/singleton"/>">User Directory Adaptor</a>
     </div>
   </nav>
 
   <div class="container">
     <div class="page-header">
-      <h1>ActiveDirectory Adaptor Service Provider Catalogue</h1>
+      <h1>User Directory Adaptor Service Provider Catalogue</h1>
     </div>
     <%--
 Start of user code (RECOMMENDED) bodyStuff
@@ -102,7 +102,7 @@ End of user code
   <footer class="footer">
     <div class="container">
       <p class="text-muted">
-        OSLC Adaptor was generated using <a href="http://eclipse.org/lyo">Eclipse Lyo</a> 2.3.0.M2.
+        OSLC Adaptor was generated using <a href="http://eclipse.org/lyo">Eclipse Lyo</a> 2.3.0-SNAPSHOT.
       </p>
     </div>
   </footer>

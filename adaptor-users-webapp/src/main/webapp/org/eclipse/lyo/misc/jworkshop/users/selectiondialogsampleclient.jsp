@@ -48,7 +48,7 @@ End of user code
 
 <nav class="navbar sticky-top navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="<c:url value="/services/catalog/singleton"/>">ActiveDirectory Adaptor</a>
+    <a class="navbar-brand" href="<c:url value="/services/catalog/singleton"/>">User Directory Adaptor</a>
   </div>
 </nav>
 
@@ -88,7 +88,7 @@ End of user code
 <footer class="footer">
   <div class="container">
     <p class="text-muted">
-      OSLC Adaptor was generated using <a href="http://eclipse.org/lyo">Eclipse Lyo</a> 2.3.0.M2.
+      OSLC Adaptor was generated using <a href="http://eclipse.org/lyo">Eclipse Lyo</a> 2.3.0-SNAPSHOT.
     </p>
   </div>
 </footer>

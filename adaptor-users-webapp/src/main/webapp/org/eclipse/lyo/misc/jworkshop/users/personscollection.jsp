@@ -28,7 +28,7 @@
 <%@page import="org.eclipse.lyo.oslc4j.core.model.ServiceProvider"%>
 <%@page import="org.eclipse.lyo.oslc4j.core.model.AbstractResource"%>
 <%@page import="java.util.List" %>
-<%@page import="jira.rdf.scania.com.resources.Person"%>
+<%@page import="org.eclipse.lyo.misc.jworkshop.users.resources.Person"%>
 <%--
 Start of user code imports
 --%>
@@ -73,7 +73,7 @@ End of user code
 <!-- Fixed navbar -->
 <nav class="navbar sticky-top navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="<c:url value="/services/catalog/singleton"/>">ActiveDirectory Adaptor</a>
+    <a class="navbar-brand" href="<c:url value="/services/catalog/singleton"/>">User Directory Adaptor</a>
   </div>
 </nav>
   <!-- Begin page content -->
@@ -104,7 +104,7 @@ End of user code
       </div>
   <footer class="footer">
       <div class="container">
-          <p class="text-muted">OSLC Adaptor was generated using <a href="http://eclipse.org/lyo">Eclipse Lyo</a> 2.3.0.M2.</p>
+          <p class="text-muted">OSLC Adaptor was generated using <a href="http://eclipse.org/lyo">Eclipse Lyo</a> 2.3.0-SNAPSHOT.</p>
       </div>
   </footer>
 </body>

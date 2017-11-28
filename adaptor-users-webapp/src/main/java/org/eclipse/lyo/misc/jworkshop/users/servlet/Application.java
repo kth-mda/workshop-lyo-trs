@@ -27,12 +27,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.lyo.misc.jworkshop.users.resources.FoafConstants;
-import org.eclipse.lyo.misc.jworkshop.users.resources.Person;
-import org.eclipse.lyo.misc.jworkshop.users.services.ResourceShapeService;
-import org.eclipse.lyo.misc.jworkshop.users.services.ServiceProviderCatalogService;
-import org.eclipse.lyo.misc.jworkshop.users.services.ServiceProviderService;
-import org.eclipse.lyo.misc.jworkshop.users.services.ServiceProviderService1;
+
 import org.eclipse.lyo.oslc4j.application.OslcWinkApplication;
 import org.eclipse.lyo.oslc4j.core.exception.OslcCoreApplicationException;
 import org.eclipse.lyo.oslc4j.core.model.AllowedValues;
@@ -54,6 +49,14 @@ import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProviderCatalog;
 import org.eclipse.lyo.oslc4j.provider.jena.JenaProvidersRegistry;
 import org.eclipse.lyo.oslc4j.provider.json4j.Json4JProvidersRegistry;
+
+import org.eclipse.lyo.misc.jworkshop.users.services.ServiceProviderCatalogService;
+import org.eclipse.lyo.misc.jworkshop.users.services.ServiceProviderService;
+import org.eclipse.lyo.misc.jworkshop.users.services.ResourceShapeService;
+
+import org.eclipse.lyo.misc.jworkshop.users.resources.Person;
+import org.eclipse.lyo.misc.jworkshop.users.resources.FoafConstants;
+import org.eclipse.lyo.misc.jworkshop.users.services.ServiceProviderService1;
 
 // Start of user code imports
 // End of user code

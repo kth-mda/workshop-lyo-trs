@@ -72,7 +72,7 @@ End of user code
 
   <nav class="navbar sticky-top navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="<c:url value="/services/catalog/singleton"/>">ActiveDirectory Adaptor</a>
+      <a class="navbar-brand" href="<c:url value="/services/catalog/singleton"/>">User Directory Adaptor</a>
     </div>
   </nav>
 
@@ -107,7 +107,7 @@ End of user code
     %>
     <p>
         <a href="<%= selectionDialog %>"><%= selectionDialog %></a>
-    (<a href="<%= request.getContextPath() %>/jira/rdf/scania/com/selectiondialogsampleclient.jsp?selectionUri=<%= URLEncoder.encode(selectionDialog.toString(), "UTF-8") %>">sample client</a>)
+    (<a href="<%= request.getContextPath() %>/org/eclipse/lyo/misc/jworkshop/users/selectiondialogsampleclient.jsp?selectionUri=<%= URLEncoder.encode(selectionDialog.toString(), "UTF-8") %>">sample client</a>)
     </p>
     <%}%>
     <% Dialog[] creationDialogs = services[serviceIndex].getCreationDialogs(); %>
@@ -120,7 +120,7 @@ End of user code
     %>
     <p>
         <a href="<%= creationDialog %>"><%= creationDialog %></a>
-    (<a href="<%= request.getContextPath() %>/jira/rdf/scania/com/creationdialogsampleclient.jsp?creationUri=<%= URLEncoder.encode(creationDialog.toString(), "UTF-8") %>">sample client</a>)
+    (<a href="<%= request.getContextPath() %>/org/eclipse/lyo/misc/jworkshop/users/creationdialogsampleclient.jsp?creationUri=<%= URLEncoder.encode(creationDialog.toString(), "UTF-8") %>">sample client</a>)
     </p>
     <%}%>
     <% CreationFactory[] creationFactories = services[serviceIndex].getCreationFactories(); %>
@@ -172,7 +172,7 @@ End of user code
   <footer class="footer">
     <div class="container">
       <p class="text-muted">
-        OSLC Adaptor was generated using <a href="http://eclipse.org/lyo">Eclipse Lyo</a> 2.3.0.M2.
+        OSLC Adaptor was generated using <a href="http://eclipse.org/lyo">Eclipse Lyo</a> 2.3.0-SNAPSHOT.
       </p>
     </div>
   </footer>

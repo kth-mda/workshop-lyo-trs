@@ -30,9 +30,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletRegistration;
-
-import org.eclipse.lyo.misc.jworkshop.users.ActiveDirectoryAdaptorManager;
 import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
+
+import org.eclipse.lyo.misc.jworkshop.users.UserDirectoryAdaptorManager;
 
 // Start of user code imports
 // End of user code
@@ -77,7 +77,7 @@ public class ServletListener implements ServletContextListener  {
         logger.log(Level.INFO, "servletListner contextInitialized.");
 
         // Establish connection to data backbone etc ...
-        ActiveDirectoryAdaptorManager.contextInitializeServletListener(servletContextEvent);
+        UserDirectoryAdaptorManager.contextInitializeServletListener(servletContextEvent);
 
         // Start of user code contextInitialized_final
         // End of user code
@@ -90,7 +90,7 @@ public class ServletListener implements ServletContextListener  {
         // End of user code
 
         // Shutdown connections to data backbone etc...
-        ActiveDirectoryAdaptorManager.contextDestroyServletListener(servletContextEvent);
+        UserDirectoryAdaptorManager.contextDestroyServletListener(servletContextEvent);
 
         // Start of user code contextDestroyed_final
         // End of user code

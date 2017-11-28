@@ -57,11 +57,6 @@ import javax.ws.rs.core.UriBuilder;
 
 import org.apache.wink.json4j.JSONObject;
 import org.eclipse.lyo.oslc4j.provider.json4j.JsonHelper;
-import org.eclipse.lyo.misc.jworkshop.users.ActiveDirectoryAdaptorConstants;
-import org.eclipse.lyo.misc.jworkshop.users.ActiveDirectoryAdaptorManager;
-import org.eclipse.lyo.misc.jworkshop.users.resources.FoafConstants;
-import org.eclipse.lyo.misc.jworkshop.users.resources.Person;
-import org.eclipse.lyo.misc.jworkshop.users.servlet.ServiceProviderCatalogSingleton;
 import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcCreationFactory;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcDialog;
@@ -75,6 +70,13 @@ import org.eclipse.lyo.oslc4j.core.model.Preview;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.Link;
 import org.eclipse.lyo.oslc4j.core.model.AbstractResource;
+
+import org.eclipse.lyo.misc.jworkshop.users.UserDirectoryAdaptorManager;
+import org.eclipse.lyo.misc.jworkshop.users.UserDirectoryAdaptorConstants;
+import org.eclipse.lyo.misc.jworkshop.users.resources.FoafConstants;
+import org.eclipse.lyo.misc.jworkshop.users.resources.FoafConstants;
+import org.eclipse.lyo.misc.jworkshop.users.servlet.ServiceProviderCatalogSingleton;
+import org.eclipse.lyo.misc.jworkshop.users.resources.Person;
 
 // Start of user code imports
 // End of user code
@@ -130,7 +132,7 @@ public class ServiceProviderService1
         // Here additional logic can be implemented that complements main action taken in ActiveDirectoryAdaptorManager
         // End of user code
 
-        final List<Person> resources = ActiveDirectoryAdaptorManager.queryPersons(httpServletRequest, serviceProviderId, where, page, limit);
+        final List<Person> resources = UserDirectoryAdaptorManager.queryPersons(httpServletRequest, serviceProviderId, where, page, limit);
         return resources.toArray(new Person [resources.size()]);
     }
 
@@ -155,7 +157,7 @@ public class ServiceProviderService1
         // Start of user code queryPersonsAsHtml
         // End of user code
 
-        final List<Person> resources = ActiveDirectoryAdaptorManager.queryPersons(httpServletRequest, serviceProviderId, where, page, limit);
+        final List<Person> resources = UserDirectoryAdaptorManager.queryPersons(httpServletRequest, serviceProviderId, where, page, limit);
 
         if (resources!= null) {
             httpServletRequest.setAttribute("resources", resources);
@@ -169,7 +171,7 @@ public class ServiceProviderService1
                 httpServletRequest.setAttribute("nextPageUri",
                         uriInfo.getAbsolutePath().toString() + "?oslc.paging=true&amp;page=" + (page + 1));
             }
-            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/jira/rdf/scania/com/personscollection.jsp");
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/org/eclipse/lyo/misc/jworkshop/users/personscollection.jsp");
             rd.forward(httpServletRequest,httpServletResponse);
         }
 
@@ -186,12 +188,12 @@ public class ServiceProviderService1
         // Start of user code getResource_init
         // End of user code
 
-        final Person aPerson = ActiveDirectoryAdaptorManager.getPerson(httpServletRequest, serviceProviderId, personId);
+        final Person aPerson = UserDirectoryAdaptorManager.getPerson(httpServletRequest, serviceProviderId, personId);
 
         if (aPerson != null) {
             // Start of user code getPerson
             // End of user code
-            httpServletResponse.addHeader(ActiveDirectoryAdaptorConstants.HDR_OSLC_VERSION, ActiveDirectoryAdaptorConstants.OSLC_VERSION_V2);
+            httpServletResponse.addHeader(UserDirectoryAdaptorConstants.HDR_OSLC_VERSION, UserDirectoryAdaptorConstants.OSLC_VERSION_V2);
             return aPerson;
         }
 
@@ -208,14 +210,14 @@ public class ServiceProviderService1
         // Start of user code getPersonAsHtml_init
         // End of user code
 
-        final Person aPerson = ActiveDirectoryAdaptorManager.getPerson(httpServletRequest, serviceProviderId, personId);
+        final Person aPerson = UserDirectoryAdaptorManager.getPerson(httpServletRequest, serviceProviderId, personId);
 
         if (aPerson != null) {
             httpServletRequest.setAttribute("aPerson", aPerson);
             // Start of user code getPersonAsHtml_setAttributes
             // End of user code
 
-            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/jira/rdf/scania/com/person.jsp");
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/org/eclipse/lyo/misc/jworkshop/users/person.jsp");
             rd.forward(httpServletRequest,httpServletResponse);
         }
 
@@ -239,7 +241,7 @@ public class ServiceProviderService1
         //TODO: adjust the preview height & width values from the default values provided above.
         // End of user code
 
-        final Person aPerson = ActiveDirectoryAdaptorManager.getPerson(httpServletRequest, serviceProviderId, personId);
+        final Person aPerson = UserDirectoryAdaptorManager.getPerson(httpServletRequest, serviceProviderId, personId);
 
         if (aPerson != null) {
             final Compact compact = new Compact();
@@ -262,7 +264,7 @@ public class ServiceProviderService1
             largePreview.setHintWidth(largePreviewHintWidth);
             largePreview.setDocument(aPerson.getAbout());
             compact.setLargePreview(largePreview);
-            httpServletResponse.addHeader(ActiveDirectoryAdaptorConstants.HDR_OSLC_VERSION, ActiveDirectoryAdaptorConstants.OSLC_VERSION_V2);
+            httpServletResponse.addHeader(UserDirectoryAdaptorConstants.HDR_OSLC_VERSION, UserDirectoryAdaptorConstants.OSLC_VERSION_V2);
             return compact;
         }
         throw new WebApplicationException(Status.NOT_FOUND);
@@ -278,15 +280,15 @@ public class ServiceProviderService1
         // Start of user code getPersonAsHtmlSmallPreview_init
         // End of user code
 
-        final Person aPerson = ActiveDirectoryAdaptorManager.getPerson(httpServletRequest, serviceProviderId, personId);
+        final Person aPerson = UserDirectoryAdaptorManager.getPerson(httpServletRequest, serviceProviderId, personId);
 
         if (aPerson != null) {
             httpServletRequest.setAttribute("aPerson", aPerson);
             // Start of user code getPersonAsHtmlSmallPreview_setAttributes
             // End of user code
 
-            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/jira/rdf/scania/com/personsmallpreview.jsp");
-            httpServletResponse.addHeader(ActiveDirectoryAdaptorConstants.HDR_OSLC_VERSION, ActiveDirectoryAdaptorConstants.OSLC_VERSION_V2);
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/org/eclipse/lyo/misc/jworkshop/users/personsmallpreview.jsp");
+            httpServletResponse.addHeader(UserDirectoryAdaptorConstants.HDR_OSLC_VERSION, UserDirectoryAdaptorConstants.OSLC_VERSION_V2);
             rd.forward(httpServletRequest, httpServletResponse);
         }
 
