@@ -41,10 +41,11 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 import org.eclipse.lyo.oslc4j.core.model.OslcMediaType;
-import org.eclipse.lyo.misc.jworkshop.jira.servlet.Application;
 import org.eclipse.lyo.oslc4j.application.OslcResourceShapeResource;
 import org.eclipse.lyo.oslc4j.core.exception.OslcCoreApplicationException;
 import org.eclipse.lyo.oslc4j.core.model.ResourceShape;
+
+import org.eclipse.lyo.misc.jworkshop.jira.servlet.Application;
 
 // Start of user code imports
 // End of user code
@@ -112,7 +113,7 @@ public class ResourceShapeService
             aResourceShape = (ResourceShape) resourceClass.getMethod("createResourceShape").invoke(null);
             httpServletRequest.setAttribute("aResourceShape", aResourceShape);
             
-            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/jira/rdf/scania/com/resourceshape.jsp");
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/org/eclipse/lyo/misc/jworkshop/jira/resourceshape.jsp");
             rd.forward(httpServletRequest,httpServletResponse);
         }
         throw new WebApplicationException(Status.NOT_FOUND);

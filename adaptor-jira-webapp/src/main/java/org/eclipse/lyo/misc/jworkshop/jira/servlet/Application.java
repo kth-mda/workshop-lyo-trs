@@ -27,19 +27,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.lyo.misc.jworkshop.jira.resources.ChangeRequest;
-import org.eclipse.lyo.misc.jworkshop.jira.resources.DctermsConstants;
-import org.eclipse.lyo.misc.jworkshop.jira.resources.FoafConstants;
-import org.eclipse.lyo.misc.jworkshop.jira.resources.JiraConstants;
-import org.eclipse.lyo.misc.jworkshop.jira.resources.Oslc_cmConstants;
-import org.eclipse.lyo.misc.jworkshop.jira.resources.Person;
-import org.eclipse.lyo.misc.jworkshop.jira.resources.Project;
-import org.eclipse.lyo.misc.jworkshop.jira.services.JiraWebhooksService;
-import org.eclipse.lyo.misc.jworkshop.jira.services.ResourceShapeService;
-import org.eclipse.lyo.misc.jworkshop.jira.services.ServiceProviderCatalogService;
-import org.eclipse.lyo.misc.jworkshop.jira.services.ServiceProviderService;
-import org.eclipse.lyo.misc.jworkshop.jira.services.ServiceProviderService1;
-import org.eclipse.lyo.misc.jworkshop.jira.services.ServiceProviderService2;
+
 import org.eclipse.lyo.oslc4j.application.OslcWinkApplication;
 import org.eclipse.lyo.oslc4j.core.exception.OslcCoreApplicationException;
 import org.eclipse.lyo.oslc4j.core.model.AllowedValues;
@@ -61,6 +49,23 @@ import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProviderCatalog;
 import org.eclipse.lyo.oslc4j.provider.jena.JenaProvidersRegistry;
 import org.eclipse.lyo.oslc4j.provider.json4j.Json4JProvidersRegistry;
+
+import org.eclipse.lyo.misc.jworkshop.jira.services.ServiceProviderCatalogService;
+import org.eclipse.lyo.misc.jworkshop.jira.services.ServiceProviderService;
+import org.eclipse.lyo.misc.jworkshop.jira.services.ResourceShapeService;
+
+import org.eclipse.lyo.misc.jworkshop.jira.resources.ChangeRequest;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.Person;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.Project;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.DctermsConstants;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.FoafConstants;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.JiraConstants;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.Oslc_cmConstants;
+import org.eclipse.lyo.misc.jworkshop.jira.services.ServiceProviderService1;
+import org.eclipse.lyo.misc.jworkshop.jira.services.ServiceProviderService2;
+
+// Start of user code imports
+// End of user code
 
 // Start of user code pre_class_code
 // End of user code

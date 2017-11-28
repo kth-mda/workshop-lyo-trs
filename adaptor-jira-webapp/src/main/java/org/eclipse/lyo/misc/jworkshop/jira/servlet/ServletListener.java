@@ -30,9 +30,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletRegistration;
+import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
 
 import org.eclipse.lyo.misc.jworkshop.jira.JiraAdaptorManager;
-import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
 
 // Start of user code imports
 // End of user code

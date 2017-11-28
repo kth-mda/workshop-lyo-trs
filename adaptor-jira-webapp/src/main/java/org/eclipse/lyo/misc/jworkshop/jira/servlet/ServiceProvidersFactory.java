@@ -29,12 +29,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Map;
 
-import org.eclipse.lyo.misc.jworkshop.jira.resources.DctermsConstants;
-import org.eclipse.lyo.misc.jworkshop.jira.resources.FoafConstants;
-import org.eclipse.lyo.misc.jworkshop.jira.resources.JiraConstants;
-import org.eclipse.lyo.misc.jworkshop.jira.resources.Oslc_cmConstants;
-import org.eclipse.lyo.misc.jworkshop.jira.services.ServiceProviderService1;
-import org.eclipse.lyo.misc.jworkshop.jira.services.ServiceProviderService2;
 import org.eclipse.lyo.oslc4j.client.ServiceProviderRegistryURIs;
 import org.eclipse.lyo.oslc4j.core.exception.OslcCoreApplicationException;
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
@@ -42,6 +36,13 @@ import org.eclipse.lyo.oslc4j.core.model.PrefixDefinition;
 import org.eclipse.lyo.oslc4j.core.model.Publisher;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProviderFactory;
+
+import org.eclipse.lyo.misc.jworkshop.jira.resources.DctermsConstants;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.FoafConstants;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.JiraConstants;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.Oslc_cmConstants;
+import org.eclipse.lyo.misc.jworkshop.jira.services.ServiceProviderService1;
+import org.eclipse.lyo.misc.jworkshop.jira.services.ServiceProviderService2;
 
 // Start of user code imports
 // End of user code

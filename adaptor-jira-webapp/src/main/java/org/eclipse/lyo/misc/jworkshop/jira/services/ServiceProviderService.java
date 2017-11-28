@@ -35,8 +35,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
-import org.eclipse.lyo.misc.jworkshop.jira.JiraAdaptorManager;
-import org.eclipse.lyo.misc.jworkshop.jira.servlet.ServiceProviderCatalogSingleton;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcDialog;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcQueryCapability;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcService;
@@ -45,6 +43,9 @@ import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 import org.eclipse.lyo.oslc4j.core.model.OslcMediaType;
 import org.eclipse.lyo.oslc4j.core.model.Service;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
+
+import org.eclipse.lyo.misc.jworkshop.jira.JiraAdaptorManager;
+import org.eclipse.lyo.misc.jworkshop.jira.servlet.ServiceProviderCatalogSingleton;
 
 // Start of user code imports
 // End of user code
@@ -122,7 +123,7 @@ public class ServiceProviderService
         // Start of user code getHtmlServiceProvider_setAttributes
         // End of user code
 
-        RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/jira/rdf/scania/com/serviceprovider.jsp");
+        RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/org/eclipse/lyo/misc/jworkshop/jira/serviceprovider.jsp");
         try {
             rd.forward(httpServletRequest, httpServletResponse);
         } catch (Exception e) {

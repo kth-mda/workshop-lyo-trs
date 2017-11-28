@@ -33,11 +33,12 @@
 })
 package org.eclipse.lyo.misc.jworkshop.jira.resources;
 
+import org.eclipse.lyo.oslc4j.core.annotation.OslcNamespaceDefinition;
+import org.eclipse.lyo.oslc4j.core.annotation.OslcSchema;
+import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
+
 import org.eclipse.lyo.misc.jworkshop.jira.resources.DctermsConstants;
 import org.eclipse.lyo.misc.jworkshop.jira.resources.FoafConstants;
 import org.eclipse.lyo.misc.jworkshop.jira.resources.JiraConstants;
 import org.eclipse.lyo.misc.jworkshop.jira.resources.Oslc_cmConstants;
-import org.eclipse.lyo.oslc4j.core.annotation.OslcNamespaceDefinition;
-import org.eclipse.lyo.oslc4j.core.annotation.OslcSchema;
-import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 

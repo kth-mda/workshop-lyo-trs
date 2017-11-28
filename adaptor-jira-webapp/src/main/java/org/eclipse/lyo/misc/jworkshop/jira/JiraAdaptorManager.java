@@ -27,13 +27,13 @@ import javax.servlet.ServletContextEvent;
 import java.util.List;
 
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
+import org.eclipse.lyo.oslc4j.core.model.AbstractResource;
+import org.eclipse.lyo.misc.jworkshop.jira.servlet.ServiceProviderCatalogSingleton;
 import org.eclipse.lyo.misc.jworkshop.jira.ServiceProviderInfo;
 import org.eclipse.lyo.misc.jworkshop.jira.resources.ChangeRequest;
 import org.eclipse.lyo.misc.jworkshop.jira.resources.Person;
 import org.eclipse.lyo.misc.jworkshop.jira.resources.Project;
-import org.eclipse.lyo.misc.jworkshop.jira.services.JiraTrsService;
-import org.eclipse.lyo.misc.jworkshop.jira.servlet.ServiceProviderCatalogSingleton;
-import org.eclipse.lyo.oslc4j.core.model.AbstractResource;
+
 
 // Start of user code imports
 import java.util.ArrayList;
@@ -51,6 +51,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.Properties;
+
+// Start of user code pre_class_code
+// End of user code
 
 // Start of user code pre_class_code
 // End of user code

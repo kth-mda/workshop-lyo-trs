@@ -24,10 +24,10 @@ import java.util.Map;
 import javax.ws.rs.core.UriBuilder;
 
 import org.eclipse.lyo.oslc4j.core.model.Link;
-import org.eclipse.lyo.misc.jworkshop.jira.resources.ChangeRequest;
+import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
 import org.eclipse.lyo.misc.jworkshop.jira.resources.Person;
 import org.eclipse.lyo.misc.jworkshop.jira.resources.Project;
-import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.ChangeRequest;
 
 // Start of user code imports
 // End of user code

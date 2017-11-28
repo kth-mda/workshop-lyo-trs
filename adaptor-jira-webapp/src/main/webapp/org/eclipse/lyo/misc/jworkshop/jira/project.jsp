@@ -26,7 +26,7 @@
 
 <%@page import="org.eclipse.lyo.oslc4j.core.model.ServiceProvider"%>
 <%@page import="java.util.List" %>
-<%@page import="jira.rdf.scania.com.resources.Project"%>
+<%@page import="org.eclipse.lyo.misc.jworkshop.jira.resources.Project"%>
 <%--
 Start of user code imports
 --%>
@@ -111,7 +111,7 @@ End of user code
   <footer class="footer">
     <div class="container">
       <p class="text-muted">
-        OSLC Adaptor was generated using <a href="http://eclipse.org/lyo">Eclipse Lyo</a> 2.3.0.M2.
+        OSLC Adaptor was generated using <a href="http://eclipse.org/lyo">Eclipse Lyo</a> 2.3.0-SNAPSHOT.
       </p>
     </div>
   </footer>

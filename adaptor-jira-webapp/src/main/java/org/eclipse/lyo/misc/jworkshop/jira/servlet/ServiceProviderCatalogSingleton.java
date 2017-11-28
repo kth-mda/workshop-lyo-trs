@@ -40,14 +40,15 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
-import org.eclipse.lyo.misc.jworkshop.jira.JiraAdaptorManager;
-import org.eclipse.lyo.misc.jworkshop.jira.ServiceProviderInfo;
 import org.eclipse.lyo.oslc4j.client.ServiceProviderRegistryURIs;
 import org.eclipse.lyo.oslc4j.core.model.Publisher;
 import org.eclipse.lyo.oslc4j.core.model.Service;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProviderCatalog;
 import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
+
+import org.eclipse.lyo.misc.jworkshop.jira.JiraAdaptorManager;
+import org.eclipse.lyo.misc.jworkshop.jira.ServiceProviderInfo;
 
 // Start of user code imports
 // End of user code

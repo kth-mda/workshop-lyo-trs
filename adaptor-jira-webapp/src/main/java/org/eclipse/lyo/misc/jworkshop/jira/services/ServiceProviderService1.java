@@ -57,13 +57,6 @@ import javax.ws.rs.core.UriBuilder;
 
 import org.apache.wink.json4j.JSONObject;
 import org.eclipse.lyo.oslc4j.provider.json4j.JsonHelper;
-import org.eclipse.lyo.misc.jworkshop.jira.JiraAdaptorConstants;
-import org.eclipse.lyo.misc.jworkshop.jira.JiraAdaptorManager;
-import org.eclipse.lyo.misc.jworkshop.jira.resources.ChangeRequest;
-import org.eclipse.lyo.misc.jworkshop.jira.resources.Oslc_cmConstants;
-import org.eclipse.lyo.misc.jworkshop.jira.resources.Person;
-import org.eclipse.lyo.misc.jworkshop.jira.resources.Project;
-import org.eclipse.lyo.misc.jworkshop.jira.servlet.ServiceProviderCatalogSingleton;
 import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcCreationFactory;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcDialog;
@@ -77,6 +70,15 @@ import org.eclipse.lyo.oslc4j.core.model.Preview;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.Link;
 import org.eclipse.lyo.oslc4j.core.model.AbstractResource;
+
+import org.eclipse.lyo.misc.jworkshop.jira.JiraAdaptorManager;
+import org.eclipse.lyo.misc.jworkshop.jira.JiraAdaptorConstants;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.Oslc_cmConstants;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.Oslc_cmConstants;
+import org.eclipse.lyo.misc.jworkshop.jira.servlet.ServiceProviderCatalogSingleton;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.ChangeRequest;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.Person;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.Project;
 
 // Start of user code imports
 // End of user code
@@ -171,7 +173,7 @@ public class ServiceProviderService1
                 httpServletRequest.setAttribute("nextPageUri",
                         uriInfo.getAbsolutePath().toString() + "?oslc.paging=true&amp;page=" + (page + 1));
             }
-            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/jira/rdf/scania/com/changerequestscollection.jsp");
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/org/eclipse/lyo/misc/jworkshop/jira/changerequestscollection.jsp");
             rd.forward(httpServletRequest,httpServletResponse);
         }
 
@@ -217,7 +219,7 @@ public class ServiceProviderService1
             // Start of user code getChangeRequestAsHtml_setAttributes
             // End of user code
 
-            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/jira/rdf/scania/com/changerequest.jsp");
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/org/eclipse/lyo/misc/jworkshop/jira/changerequest.jsp");
             rd.forward(httpServletRequest,httpServletResponse);
         }
 
@@ -287,7 +289,7 @@ public class ServiceProviderService1
             // Start of user code getChangeRequestAsHtmlSmallPreview_setAttributes
             // End of user code
 
-            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/jira/rdf/scania/com/changerequestsmallpreview.jsp");
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/org/eclipse/lyo/misc/jworkshop/jira/changerequestsmallpreview.jsp");
             httpServletResponse.addHeader(JiraAdaptorConstants.HDR_OSLC_VERSION, JiraAdaptorConstants.OSLC_VERSION_V2);
             rd.forward(httpServletRequest, httpServletResponse);
         }

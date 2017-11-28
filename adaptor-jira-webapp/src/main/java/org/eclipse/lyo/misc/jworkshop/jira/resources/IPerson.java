@@ -42,7 +42,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import javax.ws.rs.core.UriBuilder;
 
-import org.eclipse.lyo.misc.jworkshop.jira.resources.FoafConstants;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcAllowedValue;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcDescription;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcMemberProperty;
@@ -62,6 +61,9 @@ import org.eclipse.lyo.oslc4j.core.model.Occurs;
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 import org.eclipse.lyo.oslc4j.core.model.Representation;
 import org.eclipse.lyo.oslc4j.core.model.ValueType;
+
+import org.eclipse.lyo.misc.jworkshop.jira.resources.FoafConstants;
+import org.eclipse.lyo.misc.jworkshop.jira.resources.FoafConstants;
 
 // Start of user code imports
 // End of user code

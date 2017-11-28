@@ -24,7 +24,7 @@
 
 <%@page import="org.eclipse.lyo.oslc4j.core.model.ServiceProvider"%>
 <%@page import="java.util.List" %>
-<%@page import="jira.rdf.scania.com.resources.ChangeRequest"%>
+<%@page import="org.eclipse.lyo.misc.jworkshop.jira.resources.ChangeRequest"%>
 <%--
 Start of user code imports
 --%>
