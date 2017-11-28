@@ -65,6 +65,7 @@ import org.eclipse.lyo.misc.jworkshop.jira.services.ServiceProviderService1;
 import org.eclipse.lyo.misc.jworkshop.jira.services.ServiceProviderService2;
 
 // Start of user code imports
+import org.eclipse.lyo.misc.jworkshop.jira.services.JiraWebhooksService;
 // End of user code
 
 // Start of user code pre_class_code
@@ -94,8 +95,8 @@ public class Application extends OslcWinkApplication {
         RESOURCE_CLASSES.add(ResourceShapeService.class);
 
         // Start of user code Custom Resource Classes
-            RESOURCE_CLASSES.add(JiraWebhooksService.class);
-            // End of user code
+        RESOURCE_CLASSES.add(JiraWebhooksService.class);
+        // End of user code
 
         RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_ALLOWED_VALUES,           AllowedValues.class);
         RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_COMPACT,                  Compact.class);

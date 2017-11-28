@@ -34,7 +34,6 @@ import org.eclipse.lyo.misc.jworkshop.jira.resources.ChangeRequest;
 import org.eclipse.lyo.misc.jworkshop.jira.resources.Person;
 import org.eclipse.lyo.misc.jworkshop.jira.resources.Project;
 
-
 // Start of user code imports
 import java.util.ArrayList;
 import org.eclipse.lyo.store.Store;
@@ -51,8 +50,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.Properties;
-
-// Start of user code pre_class_code
+import org.eclipse.lyo.misc.jworkshop.jira.services.JiraTrsService;
 // End of user code
 
 // Start of user code pre_class_code
