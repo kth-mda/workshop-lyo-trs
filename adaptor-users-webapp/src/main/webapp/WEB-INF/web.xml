@@ -3,22 +3,22 @@
   xmlns="http://java.sun.com/xml/ns/javaee"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
   id="WebApp_ID" version="3.0">
-  <display-name>Jira workshop adaptor</display-name>
+  <display-name>User Directory workshop adaptor</display-name>
   <context-param>
     <description>Base URI for the adaptor.</description>
     <param-name>jira.rdf.scania.com.servlet.baseurl</param-name>
-    <param-value>http://localhost:8081</param-value>
+    <param-value>http://localhost:8082</param-value>
   </context-param>
   <listener>
     <description>Listener for ServletContext lifecycle changes</description>
-    <listener-class>org.eclipse.lyo.misc.jworkshop.jira.servlet.ServletListener</listener-class>
+    <listener-class>org.eclipse.lyo.misc.jworkshop.users.servlet.ServletListener</listener-class>
   </listener>
   <servlet>
     <servlet-name>JAX-RS Servlet</servlet-name>
     <servlet-class>org.apache.wink.server.internal.servlet.RestServlet</servlet-class>
     <init-param>
       <param-name>javax.ws.rs.Application</param-name>
-      <param-value>org.eclipse.lyo.misc.jworkshop.jira.servlet.Application</param-value>
+      <param-value>org.eclipse.lyo.misc.jworkshop.users.servlet.Application</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
