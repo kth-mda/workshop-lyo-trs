@@ -104,7 +104,7 @@ End of user code
       </div>
   <footer class="footer">
       <div class="container">
-          <p class="text-muted">OSLC Adaptor was generated using <a href="http://eclipse.org/lyo">Eclipse Lyo</a> 2.3.0-SNAPSHOT.</p>
+          <p class="text-muted">OSLC Adaptor was generated using <a href="http://eclipse.org/lyo">Eclipse Lyo</a> 2.3.0.M2.</p>
       </div>
   </footer>
 </body>

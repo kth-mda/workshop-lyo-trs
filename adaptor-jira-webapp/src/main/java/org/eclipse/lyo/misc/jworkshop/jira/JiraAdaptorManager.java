@@ -180,18 +180,18 @@ public class JiraAdaptorManager {
 
 
 
-    public static String getETagFromProject(final Project aResource)
-    {
-        String eTag = null;
-        // Start of user code getETagFromProject
-        // TODO Implement code to return an ETag for a particular resource
-        // End of user code
-        return eTag;
-    }
     public static String getETagFromChangeRequest(final ChangeRequest aResource)
     {
         String eTag = null;
         // Start of user code getETagFromChangeRequest
+        // TODO Implement code to return an ETag for a particular resource
+        // End of user code
+        return eTag;
+    }
+    public static String getETagFromProject(final Project aResource)
+    {
+        String eTag = null;
+        // Start of user code getETagFromProject
         // TODO Implement code to return an ETag for a particular resource
         // End of user code
         return eTag;
