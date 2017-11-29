@@ -2,6 +2,17 @@
 
 This handout is the companion guide for the hands-on session of the Eclipse Lyo workshop.
 
+**Contents:**
+
+<!-- TOC depthFrom:2 -->
+
+- [Required software](#required-software)
+- [Setting up the User Directory adaptor](#setting-up-the-user-directory-adaptor)
+- [Setting up the Jira adaptor](#setting-up-the-jira-adaptor)
+- [Bonus: build a digital twin for a V-REP simulator!](#bonus-build-a-digital-twin-for-a-v-rep-simulator)
+
+<!-- /TOC -->
+
 ## Required software
 
 - JDK 8
@@ -52,6 +63,13 @@ INSERT DATA {
 >   ?instance a <http://xmlns.com/foaf/0.1/#Person> .
 > }
 > ```
+
+Generation parameters for the Semantic properties tab:
+
+- `javaClassBaseNamespace="org.eclipse.lyo.misc.jworkshop.users"`
+- `javaFilesBasePath="../adaptor-users-webapp/src/main/java/" `
+- `jspFilesBasePath="../adaptor-users-webapp/src/main/webapp/" `
+- `javascriptFilesBasePath="../adaptor-users-webapp/src/main/webapp/"`
 
 
 `contextInitializeServletListener` code block:
@@ -106,12 +124,6 @@ try {
 } catch (Exception e) {
     log.error("Failed to get a ChangeRequest resource", e);
 }
-```
-
-`` code block:
-
-```java
-
 ```
 
 
@@ -181,6 +193,8 @@ try {
     log.error("Failed to get ChangeRequest resources", e);
 }
 ```
+
+**Finally**, you need to copy two service classes: [JiraTrsService](src/JiraTrsService.java) and [JiraWebhooksService.java](src/JiraWebhooksService.java).
 
 ## Bonus: build a digital twin for a V-REP simulator!
 
