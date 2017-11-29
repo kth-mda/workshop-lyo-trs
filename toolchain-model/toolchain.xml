@@ -14,7 +14,7 @@
       </serviceProviders>
     </serviceProviderCatalog>
     <specification/>
-    <requiredAdaptors xsi:type="oslc4j_ai:GenericRequiredAdaptor" serviceProviderCatalogURI="http://localhost:8082/adaptor-ad/services/catalog/singleton" name="ActiveDirectoryAdaptor" servicedResources="//@specification/@domainSpecifications.3/@resources.0"/>
+    <requiredAdaptors xsi:type="oslc4j_ai:GenericRequiredAdaptor" serviceProviderCatalogURI="http://localhost:8082/adaptor-ad/services/catalog/singleton" name="UserDirectoryAdaptor" servicedResources="//@specification/@domainSpecifications.3/@resources.0"/>
   </adaptorInterfaces>
   <adaptorInterfaces name="User Directory Adaptor" javaClassBaseNamespace="org.eclipse.lyo.misc.jworkshop.users" javaFilesBasePath="../adaptor-users-webapp/src/main/java/" jspFilesBasePath="../adaptor-users-webapp/src/main/webapp/" javascriptFilesBasePath="../adaptor-users-webapp/src/main/webapp/" backendCodeTemplate_searchResources="">
     <serviceProviderCatalog title="Service Provider Catalog" description="Service Provider Catalog">

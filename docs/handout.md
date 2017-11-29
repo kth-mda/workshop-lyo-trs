@@ -190,6 +190,8 @@ A Digital Twin adaptor will allow you to have a `Scene` resource with the `eleme
 
 > You can also develop a far more complex vocabulary and use [V-REP Remote API](http://www.coppeliarobotics.com/helpFiles/en/remoteApiOverview.htm) to mirror resources in the twin from the V-REP scene if you have extra time and energy!
 
+Start V-REP by typing `vrep.sh` in the terminal (from any folder).
+
 Open the script by double clicking its icon on any element in the scene:
 
 ![](img/script.png)
