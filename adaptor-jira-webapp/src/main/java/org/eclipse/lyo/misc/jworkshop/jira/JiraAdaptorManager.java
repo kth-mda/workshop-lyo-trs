@@ -89,12 +89,10 @@ public class JiraAdaptorManager {
             client = new MqttClient("tcp://localhost:1883", "JiraAdaptor");
             client.connect();
             updateManager.addHandler(new TrsMqttChangeLogHandler<Object>(JiraTrsService.changeHistories, client, topic));
-            //updateManager.poll(null, 5);
         } catch (IOException e) {
             log.error("problem loading properties file", e);
             System.exit(1);
         } catch (MqttException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         // End of user code

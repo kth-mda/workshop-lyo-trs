@@ -6,7 +6,7 @@
   <display-name>User Directory workshop adaptor</display-name>
   <context-param>
     <description>Base URI for the adaptor.</description>
-    <param-name>jira.rdf.scania.com.servlet.baseurl</param-name>
+    <param-name>org.eclipse.lyo.misc.jworkshop.users.servlet.baseurl</param-name>
     <param-value>http://localhost:8082</param-value>
   </context-param>
   <listener>

@@ -27,13 +27,22 @@ import javax.servlet.ServletContextEvent;
 import java.util.List;
 
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
-import org.eclipse.lyo.oslc4j.core.model.AbstractResource;
-import org.eclipse.lyo.misc.jworkshop.users.servlet.ServiceProviderCatalogSingleton;
 import org.eclipse.lyo.misc.jworkshop.users.ServiceProviderInfo;
 import org.eclipse.lyo.misc.jworkshop.users.resources.Person;
-
+import org.eclipse.lyo.misc.jworkshop.users.servlet.ServiceProviderCatalogSingleton;
+import org.eclipse.lyo.oslc4j.core.model.AbstractResource;
 
 // Start of user code imports
+import java.util.ArrayList;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.util.Properties;
+import org.eclipse.lyo.store.Store;
+import org.eclipse.lyo.store.StoreFactory;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 // End of user code
 
 // Start of user code pre_class_code
@@ -42,6 +51,8 @@ import org.eclipse.lyo.misc.jworkshop.users.resources.Person;
 public class UserDirectoryAdaptorManager {
 
     // Start of user code class_attributes
+	public static Store store = null;
+	private static final Logger log = LoggerFactory.getLogger(UserDirectoryAdaptorManager.class);
     // End of user code
     
     
@@ -52,7 +63,17 @@ public class UserDirectoryAdaptorManager {
     {
         
         // Start of user code contextInitializeServletListener
-        // TODO Implement code to establish connection to data backbone etc ...
+        try {
+            Properties props = new Properties();
+            InputStream jiraPropertiesStream = UserDirectoryAdaptorManager.class.getClassLoader().getResourceAsStream("jira.properties");
+            props.load(jiraPropertiesStream);
+            String sparqlQueryUrl = props.getProperty("sparqlQueryUrl");
+            String sparqlUpdateUrl = props.getProperty("sparqlUpdateUrl");
+            store = StoreFactory.sparql(sparqlQueryUrl, sparqlUpdateUrl);
+        } catch (IOException e) {
+            log.error("problem loading properties file", e);
+            System.exit(1);
+        }
         // End of user code
     }
 
@@ -69,7 +90,10 @@ public class UserDirectoryAdaptorManager {
         ServiceProviderInfo[] serviceProviderInfos = {};
         
         // Start of user code "ServiceProviderInfo[] getServiceProviderInfos(...)"
-        // TODO Implement code to return the set of ServiceProviders
+        ServiceProviderInfo anSP = new ServiceProviderInfo();
+        anSP.name = "the only SP"; 
+        anSP.serviceProviderId = "1";
+        serviceProviderInfos = new ServiceProviderInfo[] {anSP};
         // End of user code
         return serviceProviderInfos;
     }
@@ -79,7 +103,19 @@ public class UserDirectoryAdaptorManager {
         List<Person> resources = null;
         
         // Start of user code queryPersons
-        // TODO Implement code to return a set of resources
+        // This is a very primitive query functionality. We ought to at least
+        // use the proper term oslc.searchTerms for such a search, instead of "where".
+        try {
+            resources = new ArrayList<Person>();
+            List<Person> allResources = store.getResources(new URI("urn:x-arq:DefaultGraph"), Person.class, 100, 0);
+            for (Person person : allResources) {
+                if ((where == null) || (person.getName().equals(where)))
+                    resources.add(person);
+            }
+        } catch (Exception e) {
+            log.error("Failed to get a User resource based on query", e);
+            return new ArrayList<Person>();
+        }
         // End of user code
         return resources;
     }
@@ -90,7 +126,12 @@ public class UserDirectoryAdaptorManager {
         Person aResource = null;
         
         // Start of user code getPerson
-        // TODO Implement code to return a resource
+        try {
+            URI changeRequestUri = Person.constructURI(serviceProviderId, personId);
+            aResource = UserDirectoryAdaptorManager.store.getResource(new URI ("urn:x-arq:DefaultGraph"), changeRequestUri, Person.class);
+        } catch (Exception e) {
+            log.error("Failed to get a ChangeRequest resource", e);
+        }
         // End of user code
         return aResource;
     }

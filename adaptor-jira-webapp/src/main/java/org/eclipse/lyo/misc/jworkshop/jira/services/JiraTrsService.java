@@ -8,7 +8,7 @@ import org.eclipse.lyo.oslc4j.trs.provider.service.TrsServiceBase;
 public class JiraTrsService extends TrsServiceBase {
 
     public static JiraChangeHistories changeHistories = new JiraChangeHistories(JiraAdaptorManager.changeProvider);
-    
+
     @Override
     protected ChangeHistories getChangeHistories() {
         return changeHistories;
