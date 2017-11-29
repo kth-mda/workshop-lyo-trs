@@ -173,7 +173,13 @@ try {
 }
 ```
 
-## Bonus: V-REP
+## Bonus: build a digital twin for a V-REP simulator!
+
+In this step, you will get to extend our toolchain with an adaptor that will get from you from the development stage to working with operational data.
+
+A Digital Twin adaptor will allow you to have a `Scene` resource with the `elementCount` property.
+
+> You can also develop a far more complex vocabulary and use [V-REP Remote API](http://www.coppeliarobotics.com/helpFiles/en/remoteApiOverview.htm) to mirror resources in the twin from the V-REP scene if you have extra time and energy!
 
 Open the script by double clicking its icon on any element in the scene:
 
@@ -183,8 +189,10 @@ Under the clause `if (sim_call_type=sim_childscriptcall_initialization) then` of
 
     simExtRemoteApiStart(19999)
 
-Make sure the native library is compiled against `jni.h` (located under `/include`) and `jni_md.h` (located under `/include/linux` for the JDK on Linux) of the _same_ JDK where you will run the code describled below.
+Make sure the native library is compiled against `jni.h` (located under `/include`) and `jni_md.h` (located under `/include/linux` for the JDK on Linux) of the _same_ JDK where you will run the code describled below (**I have already done this for you, please see the line you need to use to run your Java program below**).
 
 In the application VM startup parameters, be sure to add the right path to the folder where the newly built native extension is located:
 
-    -Djava.library.path=
+    -Djava.library.path=/home/lyo/opt/V-REP_PRO_EDU_V3_4_0_Linux/programming/remoteApiBindings/java/lib
+
+So... what now? Well, it's the right time to turn the V-REP example into a Lyo Store Update `ChangeProvider` in order to persist the resources in the triplestore and to publish the TRS updates over MQTT! Use the same skeleton and Lyo Store setup as in the Jira adaptor.
