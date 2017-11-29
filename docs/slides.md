@@ -267,5 +267,5 @@ _Follow the V-REP instructions to compile a native library with the JNI interfac
 
 - OSLC provides a consistent way to operate on Linked Data via REST interfaces
 - Lyo has a Java SDK and a model-based tool to generate OSLC servers
-- Specifications can be imported, exported and imported (the last one is WIP)
+- Specifications can be reused, exported and imported (the last one is WIP)
 - Visit http://oslc.co and http://eclipse.org/lyo for more information
