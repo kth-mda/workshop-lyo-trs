@@ -45,6 +45,15 @@ INSERT DATA {
 
 > **NB!** This query needs to be run against the SPARQL Update endpoint, not the regular SPARQL Query one. E.g. `http://localhost:3030/JiraDataset/update`.
 
+> Counting the number of users:
+>
+> ```sparql
+> SELECT (COUNT(DISTINCT ?instance) AS ?count) WHERE {
+>   ?instance a <http://xmlns.com/foaf/0.1/#Person> .
+> }
+> ```
+
+
 `contextInitializeServletListener` code block:
 
 ```java

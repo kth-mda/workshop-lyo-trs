@@ -35,3 +35,32 @@
     - pro tip: Firefox has most of the bookmarks you need for today
 - Start a triplestore via `fuseki run`
     - pro tip: `Ctrl+Shift+T` opens a terminal tab
+
+### Before we get into OSLC... (I)
+
+Let's play a bit with RDF and SPARQL.
+
+- Go to the _Setting up the User Directory adaptor_ section of the handout
+- Copy the SPARQL query to initialise the user directory
+- Open http://localhost:3030/ and then _Dataset_ tab
+- Paste the query into an editor
+- Select `JiraDataset` from the dropdown
+- Copy the _SPARQL Update_ URI from the _info_ tab
+- Paste it into the _SPARQL endpoint_ field back on the _query_ tab
+- Hit the "play" button in the top right corner
+
+### Before we get into OSLC... (II)
+
+Now let's switch back to the query endpoint URI (just replace `update` with `query` at the end of the _SPARQL endpoint_ field) and let's ask a few queries.
+
+#### Count the number of users
+
+```sparql
+SELECT (COUNT(DISTINCT ?instance) AS ?count) WHERE {
+  ?instance a <http://xmlns.com/foaf/0.1/#Person> .
+}
+```
+
+#### DIY!
+
+**Task: Retrieve all given names of the users.**
