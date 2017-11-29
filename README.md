@@ -1,3 +1,3 @@
 # Eclipse Lyo tutorial
 
-See the [handout](workshop-handout.md) file for the workshop insructions.
+See the [handout](docs/handout.md) for the workshop instructions and the [slides](docs/slides.pdf).
